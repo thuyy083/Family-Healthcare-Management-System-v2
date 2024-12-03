@@ -1,0 +1,88 @@
+﻿/* CSS cho phần tư vấn */
+.chat-container {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 600px;
+    background-color: #f9f9f9;
+}
+
+/* Vùng hiển thị tin nhắn */
+.chat-messages {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+    background-color: #fff;
+    border-bottom: 1px solid #ccc;
+}
+
+/* Tin nhắn gửi từ bác sĩ */
+.message.bacsi {
+    text-align: right;
+    color: #fff;
+    background-color: #007bff;
+    padding: 8px;
+    border-radius: 15px;
+    margin: 5px 0;
+    max-width: 70%;
+    align-self: flex-end;
+}
+
+/* Tin nhắn gửi từ khách hàng */
+.message.khachhang {
+    text-align: left;
+    color: #333;
+    background-color: #e9ecef;
+    padding: 8px;
+    border-radius: 15px;
+    margin: 5px 0;
+    max-width: 70%;
+    align-self: flex-start;
+}
+
+/* Phần nhập liệu */
+.input-container {
+    display: flex;
+    border-top: 1px solid #ccc;
+    background-color: #fff;
+}
+
+    .input-container input[type="text"] {
+        flex: 1;
+        border: none;
+        padding: 15px;
+        font-size: 16px;
+        border-radius: 0;
+        outline: none;
+    }
+
+    /* Nút gửi tin nhắn */
+    .input-container button {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 15px;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 0;
+        outline: none;
+    }
+
+        .input-container button:hover {
+            background-color: #0056b3;
+        }
+
+/* Cuộn xuống phần cuối của tin nhắn khi có tin nhắn mới */
+.chat-messages::-webkit-scrollbar {
+    width: 8px;
+}
+
+.chat-messages::-webkit-scrollbar-thumb {
+    background-color: #007bff;
+    border-radius: 4px;
+}

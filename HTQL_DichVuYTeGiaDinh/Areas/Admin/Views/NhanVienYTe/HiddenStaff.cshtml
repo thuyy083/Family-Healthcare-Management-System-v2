@@ -1,0 +1,95 @@
+﻿@model IEnumerable<HTQL_DichVuYTeGiaDinh.Models.NhanVienYTe>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Danh sách nhân viên y tế bị ẩn";
+    var stt = ViewBag.StartingIndex;
+}
+
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-header">
+            <div class="d-flex align-items-center">
+                <h4 class="card-title">Danh sách nhân viên y tế bị ẩn</h4>
+                <a asp-area="Admin" asp-action="Index" asp-controller="NhanVienYTe" class="btn btn-primary btn-round ms-auto">
+                    Quay lại danh sách nhân viên y tế
+                </a>
+            </div>
+        </div>
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert alert-success">
+                @TempData["SuccessMessage"]
+            </div>
+        }
+        <div class="card-body">
+            <form asp-action="HiddenStaff" method="get">
+                <div class="form-group">
+                    <label for="searchString">Tìm kiếm nhân viên:</label>
+                    <input type="text" name="searchString" value="@ViewBag.SearchString" class="form-control" placeholder="Nhập tên nhân viên...">
+                </div>
+                <button type="submit" class="btn btn-primary mt-2">Tìm kiếm</button>
+            </form>
+            <br />
+
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Họ tên</th>
+                        <th>Ngày sinh</th>
+                        <th>Số CCCD</th>
+                        <th>Giới tính</th>
+                        <th>Số điện thoại</th>
+                        <th>Email</th>
+                        <th>Hành động</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (!Model.Any())
+                    {
+                        <tr>
+                            <td colspan="8" class="text-center">Không có nhân viên y tế nào bị ẩn.</td>
+                        </tr>
+                    }
+                    else
+                    {
+                        foreach (var nv in Model)
+                        {
+                            <tr>
+                                <td>@stt</td>
+                                <td>@nv.HoTen</td>
+                                <td>@nv.NgaySinh.ToString("dd/MM/yyyy")</td>
+                                <td>@nv.SoCccd</td>
+                                <td>@(nv.GioiTinh == 1 ? "Nam" : "Nữ")</td>
+                                <td>@nv.SoDienThoai</td>
+                                <td>@nv.DiaChiEmail</td>
+                                <td>
+                                    <form asp-action="Restore" method="post" style="display:inline;">
+                                        <input type="hidden" name="id" value="@nv.MaTk" />
+                                        <button type="submit" class="btn btn-success btn-sm" onclick="return confirm('Bạn có chắc chắn muốn hiện lại nhân viên này?');">
+                                            <i class="fa fa-undo"></i> Hiện
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                            stt++;
+                        }
+                    }
+                </tbody>
+            </table>
+
+            <!-- Phân trang -->
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center">
+                    @for (int i = 1; i <= ViewBag.TotalPages; i++)
+                    {
+                        <li class="page-item @(i == ViewBag.CurrentPage ? "active" : "")">
+                            <a class="page-link" href="@Url.Action("HiddenStaff", new { page = i, searchString = ViewBag.SearchString })">@i</a>
+                        </li>
+                    }
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>

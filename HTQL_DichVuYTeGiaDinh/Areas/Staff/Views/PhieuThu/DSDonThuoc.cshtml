@@ -1,0 +1,97 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@model IEnumerable<HTQL_DichVuYTeGiaDinh.Models.DonThuoc>
+
+@{
+    ViewBag.Title = "Danh sách đơn thuốc";
+    int totalPages = ViewBag.TotalPages;
+    int currentPage = ViewBag.CurrentPage;
+    string searchString = ViewBag.SearchString ?? "";
+}
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+}
+
+<h2>Danh sách đơn thuốc</h2>
+
+<!-- Form tìm kiếm -->
+<form asp-action="DSDonThuoc" method="get">
+    <div class="form-group">
+        <label for="searchString">Tìm kiếm theo mã đơn thuốc</label>
+        <input type="text" name="searchString" class="form-control" placeholder="Nhập mã đơn thuốc" value="@searchString" />
+    </div>
+    <button type="submit" class="btn btn-primary">Tìm kiếm</button>
+</form>
+
+<!-- Hiển thị danh sách đơn thuốc -->
+<table class="table table-striped mt-3">
+    <thead>
+        <tr>
+            <th>STT</th>
+            <th>Mã đơn thuốc</th>
+            <th>Ngày kê đơn</th>
+            <th>Khách hàng</th>
+            <th>Trạng thái</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Any())
+        {
+            int index = ViewBag.StartingIndex;
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>@index</td>
+                    <td>@item.MaDonThuoc</td>
+                    <td>@item.NgayKeDon.ToString("dd/MM/yyyy")</td>
+                    <td>@item.MaHoSoNavigation.MaTkNavigation.HoTen</td>
+                    <td>
+                        @if (item.TrangThaiDonThuoc == "Đã phát thuốc")
+                        {
+                            <span class="badge bg-success">@item.TrangThaiDonThuoc</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-warning text-dark">@item.TrangThaiDonThuoc</span>
+                        }
+                    </td>
+                    <td>
+                        @if (item.TrangThaiDonThuoc == "Đã phát thuốc")
+                        {
+                            <a href="@Url.Action("XuatPhieuThu", "PhieuThu", new { maDonThuoc = item.MaDonThuoc })" class="btn btn-primary">
+                                <i class="fas fa-file-export"></i> Xuất Phiếu Thu
+                            </a>
+                        }
+                        else
+                        {
+                            <a href="@Url.Action("LapPhieuThu", "PhieuThu", new { maDonThuoc = item.MaDonThuoc })" class="btn btn-success">
+                                <i class="fas fa-receipt"></i> Lập Phiếu Thu
+                            </a>
+                        }
+                    </td>
+                </tr>
+                index++;
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="6" class="text-center">Không có đơn thuốc nào được tìm thấy</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Phân trang -->
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+        @for (int i = 1; i <= ViewBag.TotalPages; i++)
+        {
+            <li class="page-item @(i == ViewBag.CurrentPage ? "active" : "")">
+                <a class="page-link" href="@Url.Action("DSDonThuoc", new { page = i, searchString = ViewBag.SearchString })">@i</a>
+            </li>
+        }
+    </ul>
+</nav>

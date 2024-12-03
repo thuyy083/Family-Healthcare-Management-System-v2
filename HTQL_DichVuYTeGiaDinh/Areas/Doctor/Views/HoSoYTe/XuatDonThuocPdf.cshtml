@@ -1,0 +1,115 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@model HTQL_DichVuYTeGiaDinh.Models.HoSoYTe
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Đơn Thuốc</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .info {
+            margin-bottom: 20px;
+        }
+
+            .info p {
+                margin: 0;
+            }
+
+        .prescription {
+            margin-top: 30px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+
+        .footer {
+            margin-top: 50px;
+            text-align: right;
+        }
+
+        .doctor-signature {
+            text-align: right;
+            margin-top: 20px;
+            margin-right: 35px
+        }
+
+        .sign {
+            text-align: right;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>ĐƠN THUỐC</h1>
+    <div class="info">
+        <p><strong>Họ tên:</strong> @Model.MaTkNavigation.HoTen</p>
+        <p><strong>Ngày sinh:</strong> @Model.MaTkNavigation.NgaySinh.ToString("dd/MM/yyyy")</p>
+        <p><strong>Giới tính:</strong> @(Model.MaTkNavigation.GioiTinh == 1 ? "Nam" : "Nữ")</p>
+        <p><strong>Địa chỉ liên hệ:</strong> @Model.MaTkNavigation.DiaChi</p>
+        <p><strong>Chẩn đoán:</strong> @Model.ChanDoan</p>
+        <p><strong>Ngày tái khám:</strong> @Model.NgayTaiKham?.ToString("dd/MM/yyyy")</p>
+        <p><strong>Thông tin khác:</strong> @Model.ThongTinKhac</p>
+    </div>
+
+    <h2>Thuốc điều trị:</h2>
+    <table>
+        <tr>
+            <th>Tên thuốc</th>
+            <th>Đơn vị tính</th>
+            <th>Số lượng</th>
+            <th>Hướng dẫn sử dụng</th>
+        </tr>
+        @foreach (var donThuoc in Model.DonThuocs)
+        {
+            foreach (var chiTiet in donThuoc.ChiTietDonThuocs)
+            {
+                <tr>
+                    <td>@chiTiet.MaThuocNavigation.TenThuoc</td>
+                    <td>@chiTiet.MaThuocNavigation.MaDvtNavigation?.TenDvt</td>
+                    <td>@chiTiet.SoLuong</td>
+                    <td>@chiTiet.HuongDanSuDung</td>
+                </tr>
+            }
+        }
+    </table>
+
+    <div class="sign">
+        <h5>@Model.DonThuocs.FirstOrDefault()?.NgayKeDon.ToString("'Ngày' dd 'tháng' MM 'năm' yyyy")</h5>
+        <div class="doctor-signature">
+            <p>Bác sĩ khám bệnh</p>
+            <p>(Ký, ghi rõ họ tên)</p>
+        </div>
+    </div>
+
+    <br />
+    <br />
+    <br />
+
+
+    <p style="margin-top: 30px;">- Khám lại xin mang theo đơn này.</p>
+</body>
+</html>

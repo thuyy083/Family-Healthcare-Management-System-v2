@@ -1,0 +1,80 @@
+﻿@model X.PagedList.IPagedList<HTQL_DichVuYTeGiaDinh.Models.BacSi>
+@{
+    ViewBag.Title = "Danh sách Bác sĩ";
+}
+
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-header">
+            <div class="d-flex align-items-center">
+                <h4 class="card-title">Danh sách Bác sĩ</h4>
+                <a href="/Admin/QLBS/CreateBS" class="btn btn-primary btn-round ms-auto">
+                    Thêm Bác sĩ
+                </a>
+
+
+            </div>
+        </div>
+
+        <div class="card-body">
+            <!-- Bảng danh sách bác sĩ -->
+            <div class="table-responsive">
+                <table id="add-row" class="display table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Họ tên</th>
+                            <th>Chuyên khoa</th>
+                            <th>Ngày sinh</th>
+                            <th>Giới tính</th>
+                            <th>Số điện thoại</th>
+                            <th>Trình độ</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var bacSi in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <img src="../wwwroot/images/bacsi/@bacSi.HinhAnh" width="50" />
+                                </td>
+                                <td>@bacSi.HoTen</td>
+                                <td>@bacSi.MaChuyenKhoaNavigation?.TenChuyenKhoa</td>
+                                <td>@bacSi.NgaySinh.ToString("dd/MM/yyyy")</td>
+                                <td>@(bacSi.GioiTinh == 1 ? "Nam" : "Nữ")</td>
+                                <td>@bacSi.SoDienThoai</td>
+                                <td>@bacSi.TrinhDoHocVan</td>
+
+                                <td>
+                                    <div class="form-button-action">
+                                        <!-- Nút Chỉnh sửa -->
+                                        <a asp-action="EditBS" asp-controller="QLBS" asp-route-Id="@bacSi.MaTk" class="btn btn-link btn-primary btn-lg" data-bs-toggle="tooltip" data-bs-original-title="Chỉnh sửa">
+                                            <i style="width:40px" class="fa fa-edit"></i>
+                                        </a>
+
+                                        <!-- Nút Xóa -->
+                                        <a asp-action="DeleteBS" asp-controller="QLBS" asp-route-Id="@bacSi.MaTk" class="btn btn-link btn-primary btn-lg" data-bs-toggle="tooltip" data-bs-original-title="Xóa">
+                                            <i style="width:40px" class="fa fa-trash"></i>
+                                        </a>
+                                    </div>
+                                </td>
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Phân trang -->
+
+        </div>
+    </div>
+</div>
+<script>
+    function confirmDelete(url) {
+        if (confirm("Bạn có chắc chắn muốn xóa không?")) {
+            window.location.href = url;
+        }
+    }
+</script>

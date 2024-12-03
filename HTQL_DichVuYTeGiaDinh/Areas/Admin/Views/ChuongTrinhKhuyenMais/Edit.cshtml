@@ -1,0 +1,65 @@
+﻿@model HTQL_DichVuYTeGiaDinh.Models.ChuongTrinhKhuyenMai
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Edit - " + Model.TenKhuyenMai;
+}
+
+<h2>Chỉnh sửa khuyến mãi: @Model.TenKhuyenMai</h2>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="MaKhuyenMai" />
+
+    <div class="form-group">
+        <label asp-for="TenKhuyenMai">Tên khuyến mãi</label>
+        <input asp-for="TenKhuyenMai" class="form-control" />
+        <span asp-validation-for="TenKhuyenMai" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="PhanTramGiamGia">Phần trăm giảm giá (%)</label>
+        <input asp-for="PhanTramGiamGia" class="form-control" />
+        <span asp-validation-for="PhanTramGiamGia" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="NgayBatDauKm">Ngày bắt đầu khuyến mãi</label>
+        <input asp-for="NgayBatDauKm" type="date" class="form-control" />
+        <span asp-validation-for="NgayBatDauKm" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="NgayKetThucKm">Ngày kết thúc khuyến mãi</label>
+        <input asp-for="NgayKetThucKm" type="date" class="form-control" />
+        <span asp-validation-for="NgayKetThucKm" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="MoTa">Mô tả</label>
+        <textarea asp-for="MoTa" class="form-control"></textarea>
+        <span asp-validation-for="MoTa" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Dịch vụ y tế trong khuyến mãi</label>
+        <div>
+            @foreach (var dichVu in ViewBag.DichVuYTeList)
+            {
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="selectedDichVu" value="@dichVu.MaDichVu"
+                    @(Model.ChiTietKhuyenMais.Any(ct => ct.MaDichVu == dichVu.MaDichVu) ? "checked" : "") />
+                    <label class="form-check-label">@dichVu.TenDichVu</label>
+                </div>
+            }
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
+    <a asp-action="Details" asp-route-id="@Model.MaKhuyenMai" class="btn btn-secondary">Hủy bỏ</a>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

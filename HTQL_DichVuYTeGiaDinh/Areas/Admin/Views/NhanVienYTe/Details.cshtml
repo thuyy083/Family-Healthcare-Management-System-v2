@@ -1,0 +1,127 @@
+﻿@model HTQL_DichVuYTeGiaDinh.Models.NhanVienYTe
+
+@{
+    ViewData["Title"] = "Chi tiết nhân viên y tế";
+}
+
+<div class="container py-5">
+    <h2>Chi tiết nhân viên y tế</h2>
+
+    <div class="card mb-4">
+        <div class="card-header bg-primary text-white">
+            Thông tin nhân viên y tế
+        </div>
+        <div class="card-body">
+            <p><strong>Họ tên:</strong> @Model.HoTen</p>
+            <p><strong>Ngày sinh:</strong> @Model.NgaySinh.ToString("dd/MM/yyyy")</p>
+            <p><strong>Giới tính:</strong> @(Model.GioiTinh == 1 ? "Nam" : "Nữ")</p>
+            <p><strong>Số CCCD:</strong> @Model.SoCccd</p>
+            <p><strong>Số điện thoại:</strong> @Model.SoDienThoai</p>
+            <p><strong>Địa chỉ:</strong> @Model.DiaChi</p>
+            <p><strong>Email:</strong> @Model.DiaChiEmail</p>
+            <img src="@Url.Content("~/images/nhanvienyte/" + Model.HinhAnh)" alt="Ảnh nhân viên" class="img-thumbnail" style="width: 200px;" />
+        </div>
+    </div>
+
+    <h3>Danh sách hóa đơn liên quan</h3>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>STT</th>
+                <th>Mã hóa đơn</th>
+                <th>Ngày lập</th>
+                <th>Tổng tiền</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.HoaDons.Any())
+            {
+                int stt = 1;
+                foreach (var hoaDon in Model.HoaDons)
+                {
+                    <tr>
+                        <td>@stt</td>
+                        <td>@hoaDon.MaHoaDon</td>
+                        <td>@hoaDon.NgayLapHoaDon.ToString("dd/MM/yyyy")</td>
+                        <td>@string.Format("{0:N0} VNĐ", hoaDon.TongTien)</td>
+                    </tr>
+                    stt++;
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="4" class="text-center">Không có hóa đơn nào.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <h3>Danh sách phiếu nhập thuốc liên quan</h3>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>STT</th>
+                <th>Mã phiếu nhập</th>
+                <th>Ngày lập</th>
+                <th>Tổng tiền nhập</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.PhieuNhapThuocs.Any())
+            {
+                int stt = 1;
+                foreach (var phieuNhap in Model.PhieuNhapThuocs)
+                {
+                    <tr>
+                        <td>@stt</td>
+                        <td>@phieuNhap.MaPhieuNhap</td>
+                        <td>@phieuNhap.NgayLapPhieuNhap.ToString("dd/MM/yyyy")</td>
+                        <td>@string.Format("{0:N0} VNĐ", phieuNhap.TongTienNhap)</td>
+                    </tr>
+                    stt++;
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="4" class="text-center">Không có phiếu nhập thuốc nào.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <h3>Danh sách phiếu thu tiền thuốc liên quan</h3>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>STT</th>
+                <th>Mã phiếu thu</th>
+                <th>Ngày lập</th>
+                <th>Tổng tiền</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.PhieuThuTienThuocs.Any())
+            {
+                int stt = 1;
+                foreach (var phieuThu in Model.PhieuThuTienThuocs)
+                {
+                    <tr>
+                        <td>@stt</td>
+                        <td>@phieuThu.MaPhieuThu</td>
+                        <td>@phieuThu.NgayLapPhieuThu.ToString("dd/MM/yyyy")</td>
+                        <td>@string.Format("{0:N0} VNĐ", phieuThu.TongTien)</td>
+                    </tr>
+                    stt++;
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="4" class="text-center">Không có phiếu thu tiền thuốc nào.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

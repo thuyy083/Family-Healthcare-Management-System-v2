@@ -1,0 +1,73 @@
+﻿@model IEnumerable<HTQL_DichVuYTeGiaDinh.Models.BinhLuan>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Danh sách bình luận";
+}
+
+<div class="container mt-5">
+    <style>
+        .fa-star {
+            color: gold;
+        }
+
+        .pagination .active .page-link {
+            background-color: #007bff;
+            color: white;
+        }
+    </style>
+    @if (TempData["Message"] != null)
+    {
+        <div class="alert alert-success text-center" role="alert">
+            @TempData["Message"]
+        </div>
+    }
+
+    <h2 class="text-center">Danh sách bình luận của bạn</h2>
+    <table class="table table-bordered mt-4">
+        <thead class="table-light">
+            <tr>
+                <th>#</th>
+                <th>Dịch vụ</th>
+                <th>Điểm đánh giá</th>
+                <th>Thời gian</th>
+                <th>Nội dung</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (!Model.Any())
+            {
+                <tr>
+                    <td colspan="5" class="text-center">Bạn chưa có bình luận nào.</td>
+                </tr>
+            }
+            else
+            {
+                int stt = ViewBag.StartingIndex;
+                foreach (var binhLuan in Model)
+                {
+                    <tr>
+                        <td>@stt</td>
+                        <td>@binhLuan.MaDichVuNavigation?.TenDichVu</td>
+                        <td>@binhLuan.DiemDanhGia.ToString("0.0") <i class="fa fa-star text-warning"></i></td>
+                        <td>@binhLuan.ThoiDiemBinhLuan.ToString("dd/MM/yyyy HH:mm")</td>
+                        <td>@binhLuan.NoiDungBinhLuan</td>
+                    </tr>
+                    stt++;
+                }
+            }
+        </tbody>
+    </table>
+
+    <!-- Phân trang -->
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+            @for (int i = 1; i <= ViewBag.TotalPages; i++)
+            {
+                <li class="page-item @(i == ViewBag.CurrentPage ? "active" : "")">
+                    <a class="page-link" href="@Url.Action("DanhSachBinhLuan", new { page = i })">@i</a>
+                </li>
+            }
+        </ul>
+    </nav>
+</div>

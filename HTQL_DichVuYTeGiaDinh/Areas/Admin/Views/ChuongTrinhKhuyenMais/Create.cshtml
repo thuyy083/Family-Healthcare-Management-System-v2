@@ -1,0 +1,65 @@
+﻿@model HTQL_DichVuYTeGiaDinh.Models.ChuongTrinhKhuyenMai
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Thêm Chương Trình Khuyến Mãi";
+
+}
+
+<h2>Thêm Chương Trình Khuyến Mãi</h2>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label for="TenKhuyenMai">Tên Khuyến Mãi</label>
+        <input asp-for="TenKhuyenMai" class="form-control" />
+        <span asp-validation-for="TenKhuyenMai" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label for="PhanTramGiamGia">Phần Trăm Giảm Giá (%)</label>
+        <input asp-for="PhanTramGiamGia" class="form-control" />
+        <span asp-validation-for="PhanTramGiamGia" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label for="NgayBatDauKm">Ngày Bắt Đầu Khuyến Mãi</label>
+        <input asp-for="NgayBatDauKm" class="form-control" type="date" />
+        <span asp-validation-for="NgayBatDauKm" class="text-danger"></span>
+        @Html.ValidationMessageFor(model => model.NgayBatDauKm, "", new { @class = "text-danger" })
+
+    </div>
+
+    <div class="form-group">
+        <label for="NgayKetThucKm">Ngày Kết Thúc Khuyến Mãi</label>
+        <input asp-for="NgayKetThucKm" class="form-control" type="date" />
+        <span asp-validation-for="NgayKetThucKm" class="text-danger"></span>
+        @Html.ValidationMessageFor(model => model.NgayKetThucKm, "", new { @class = "text-danger" })
+
+    </div>
+
+    <div class="form-group">
+        <label for="MoTa">Mô Tả</label>
+        <textarea asp-for="MoTa" class="form-control"></textarea>
+        <span asp-validation-for="MoTa" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label for="selectedDichVuYTes">Chọn Dịch Vụ Y Tế Áp Dụng</label>
+        <div>
+            @foreach (var dichVu in (IEnumerable<SelectListItem>)ViewBag.DichVuYTes)
+            {
+                <div class="form-check">
+                    <input type="checkbox" name="selectedDichVuYTes" value="@dichVu.Value" class="form-check-input" />
+                    <label class="form-check-label">@dichVu.Text</label>
+                </div>
+            }
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Thêm</button>
+    <a asp-action="Index" class="btn btn-primary">Quay lại danh sách</a>
+
+</form>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,88 @@
+﻿@model HTQL_DichVuYTeGiaDinh.Models.ChuongTrinhKhuyenMai
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Chi tiết - " + Model.TenKhuyenMai;
+}
+
+<div>
+    <h4>Thông tin chương trình khuyến mãi</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Tên khuyến mãi
+        </dt>
+        <dd class="col-sm-10">
+            @Model.TenKhuyenMai
+        </dd>
+
+        <dt class="col-sm-2">
+            Phần trăm giảm giá
+        </dt>
+        <dd class="col-sm-10">
+            @Model.PhanTramGiamGia %
+        </dd>
+
+        <dt class="col-sm-2">
+            Ngày bắt đầu
+        </dt>
+        <dd class="col-sm-10">
+            @Model.NgayBatDauKm.ToString("dd/MM/yyyy")
+        </dd>
+
+        <dt class="col-sm-2">
+            Ngày kết thúc
+        </dt>
+        <dd class="col-sm-10">
+            @Model.NgayKetThucKm.ToString("dd/MM/yyyy")
+        </dd>
+
+        <dt class="col-sm-2">
+            Mô tả
+        </dt>
+        <dd class="col-sm-10">
+            @Model.MoTa
+        </dd>
+    </dl>
+    <a class="buttons btn btn-primary" asp-area="Admin" asp-controller="ChuongTrinhKhuyenMais" asp-action="Edit" asp-route-id="@Model.MaKhuyenMai"><i class="bi bi-pencil-square"></i></a>
+    <form asp-action="Delete" method="post" style="display:inline;">
+        <input type="hidden" name="id" value="@Model?.MaKhuyenMai" />
+        @Html.AntiForgeryToken()
+        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Bạn có chắc chắn muốn xóa chương trình khuyến mãi này không?');">
+            <i class="bi bi-trash-fill"></i>
+        </button>
+    </form>
+
+
+</div>
+<br />
+<h4>Các dịch vụ trong chương trình khuyến mãi</h4>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Tên dịch vụ</th>
+            <th>Mô tả</th>
+            <th>Đơn vị tính</th>
+            <th>Xóa</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var chiTiet in Model.ChiTietKhuyenMais)
+        {
+            <tr>
+                <td>@chiTiet.MaDichVuNavigation.TenDichVu</td>
+                <td>@chiTiet.MaDichVuNavigation.MoTa</td>
+                <td>@chiTiet.MaDichVuNavigation.DonViTinh</td>
+                <td>
+                    <form asp-action="XoaDichVuKhoiKhuyenMai" method="post" onsubmit="return confirm('Bạn có chắc chắn muốn xóa dịch vụ này khỏi chương trình khuyến mãi không?');">
+                        <input type="hidden" name="maKhuyenMai" value="@Model.MaKhuyenMai" />
+                        <input type="hidden" name="maDichVu" value="@chiTiet.MaDichVu" />
+                        <button type="submit" class="btn btn-danger">Xóa</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="Index" class="btn btn-primary">Quay lại danh sách</a>

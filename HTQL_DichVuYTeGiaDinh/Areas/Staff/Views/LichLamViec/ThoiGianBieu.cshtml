@@ -1,0 +1,56 @@
+﻿@model IEnumerable<HTQL_DichVuYTeGiaDinh.ViewModels.ThoiGianBieuViewModel>
+
+@{
+    ViewData["Title"] = "Lịch làm việc";
+}
+
+<h2>Lịch làm việc</h2>
+
+<form method="get" class="mb-4">
+    <div class="row">
+        <div class="col-md-4">
+            <label for="startDate">Từ ngày</label>
+            <input type="date" id="startDate" name="startDate" class="form-control" value="@ViewBag.StartDate.ToString("yyyy-MM-dd")" />
+        </div>
+        <div class="col-md-4">
+            <label for="endDate">Đến ngày</label>
+            <input type="date" id="endDate" name="endDate" class="form-control" value="@ViewBag.EndDate.ToString("yyyy-MM-dd")" />
+        </div>
+        <div class="col-md-4 d-flex align-items-end">
+            <button type="submit" class="btn btn-primary">Xem</button>
+        </div>
+    </div>
+</form>
+
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>Ngày</th>
+            <th>Dịch vụ</th>
+            <th>Địa chỉ</th>
+            <th>Số điện thoại</th>
+            <th>Mô tả bệnh lý</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (!Model.Any())
+        {
+            <tr>
+                <td colspan="5" class="text-center">Không có lịch làm việc nào trong khoảng thời gian này.</td>
+            </tr>
+        }
+        else
+        {
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Ngay.ToString("dd/MM/yyyy")</td>
+                    <td>@item.TenDichVu</td>
+                    <td>@item.DiaChi</td>
+                    <td>@item.SoDienThoai</td>
+                    <td>@item.MoTaBenhLy</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

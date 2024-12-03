@@ -1,0 +1,23 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Tư Vấn";
+}
+
+<h2>Tư Vấn</h2>
+
+<div>
+    <input type="hidden" id="maBacSi" value="1" /> <!-- Giả định mã bác sĩ là 1 -->
+    <input type="hidden" id="maKhachHang" value="2" /> <!-- Giả định mã khách hàng là 2 -->
+    <textarea id="noiDungTinNhan" placeholder="Nhập nội dung tin nhắn..."></textarea>
+    <button id="sendButton">Gửi Tin Nhắn</button>
+</div>
+
+<div id="messagesList">
+    <!-- Danh sách tin nhắn sẽ hiển thị ở đây -->
+</div>
+
+@section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/5.0.11/signalr.min.js"></script>
+    <script src="~/js/tuVan.js"></script> <!-- File JS chứa mã xử lý SignalR -->
+}

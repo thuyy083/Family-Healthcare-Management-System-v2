@@ -1,0 +1,133 @@
+﻿@model HTQL_DichVuYTeGiaDinh.Models.KhachHang
+
+@{
+    ViewData["Title"] = "Chi tiết khách hàng";
+}
+
+<div class="container mt-5">
+    <h2 class="mb-4">Chi tiết khách hàng</h2>
+
+    <!-- Thông tin cá nhân -->
+    <div class="card mb-4">
+        <div class="card-header bg-primary text-white">
+            <h4>Thông tin cá nhân</h4>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-3">
+                    <img src="@Url.Content("~/images/khachhang/" + Model.HinhAnh)" alt="Ảnh khách hàng" class="img-thumbnail" style="width: 200px; height: 200px;" />
+                </div>
+                <div class="col-md-9">
+                    <p><strong>Họ tên:</strong> @Model.HoTen</p>
+                    <p><strong>Ngày sinh:</strong> @Model.NgaySinh.ToString("dd/MM/yyyy")</p>
+                    <p><strong>Số CCCD:</strong> @Model.SoCccd</p>
+                    <p><strong>Giới tính:</strong> @(Model.GioiTinh == 1 ? "Nam" : "Nữ")</p>
+                    <p><strong>Địa chỉ:</strong> @Model.DiaChi</p>
+                    <p><strong>Số điện thoại:</strong> @Model.SoDienThoai</p>
+                    <p><strong>Email:</strong> @Model.DiaChiEmail</p>
+                    <p><strong>Mối quan hệ với chủ hộ:</strong> @Model.MoiQuanHeVoiChuHo</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Thông tin hộ gia đình -->
+    @if (Model.MaHgdNavigation != null)
+    {
+        <div class="card mb-4">
+            <div class="card-header bg-success text-white">
+                <h4>Thông tin hộ gia đình</h4>
+            </div>
+            <div class="card-body">
+                <p><strong>Chủ hộ:</strong> @Model.MaHgdNavigation.ChuHo</p>
+                <p><strong>Địa chỉ:</strong> @Model.MaHgdNavigation.DiaChiHgd</p>
+                <p><strong>Số điện thoại hộ gia đình:</strong> @Model.MaHgdNavigation.SodienthoaiHgd</p>
+            </div>
+        </div>
+    }
+
+    <!-- Hồ sơ y tế -->
+    @if (Model.HoSoYTes != null && Model.HoSoYTes.Any())
+    {
+        <div class="card mb-4">
+            <div class="card-header bg-info text-white">
+                <h4>Hồ sơ y tế</h4>
+            </div>
+            <div class="card-body">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Mã hồ sơ</th>
+                            <th>Ngày tạo</th>
+                            <th>Mô tả</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (int i = 0; i < Model.HoSoYTes.Count(); i++)
+                        {
+                            <tr>
+                                <td>@(i + 1)</td>
+                                <td>@Model.HoSoYTes.ElementAt(i).MaHoSo</td>
+                                <td>@Model.HoSoYTes.ElementAt(i).NgayKhamBenh.ToString("dd/MM/yyyy")</td>
+                                <td>@Model.HoSoYTes.ElementAt(i).ChanDoan</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
+
+    <!-- Sử dụng dịch vụ -->
+    @if (Model.SuDungDichVus != null && Model.SuDungDichVus.Any())
+    {
+        <div class="card mb-4">
+            <div class="card-header bg-warning text-white">
+                <h4>Lịch sử sử dụng dịch vụ</h4>
+            </div>
+            <div class="card-body">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Tên dịch vụ</th>
+                            <th>Ngày bắt đầu</th>
+                            <th>Trạng thái</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (int i = 0; i < Model.SuDungDichVus.Count(); i++)
+                        {
+                            var suDungDichVu = Model.SuDungDichVus.ElementAt(i);
+                            <tr>
+                                <td>@(i + 1)</td>
+                                <td>@suDungDichVu.MaDichVuNavigation?.TenDichVu</td>
+                                <td>@suDungDichVu.NgayBatDau.ToString("dd/MM/yyyy")</td>
+                                <td>
+                                    @if (suDungDichVu.TrangThai == 0)
+                                    {
+                                        <span class="text-secondary">Chưa duyệt</span>
+                                    }
+                                    else if (suDungDichVu.TrangThai == 1)
+                                    {
+                                        <span class="text-success">Đã duyệt</span>
+                                    }
+                                    else if (suDungDichVu.TrangThai == 2)
+                                    {
+                                        <span class="text-danger">Đã hủy</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="text-muted">Không xác định</span>
+                                    }
+                                </td>
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
+</div>

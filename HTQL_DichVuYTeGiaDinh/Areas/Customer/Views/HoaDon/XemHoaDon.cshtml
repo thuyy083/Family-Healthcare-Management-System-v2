@@ -1,0 +1,55 @@
+﻿@model HTQL_DichVuYTeGiaDinh.Models.HoaDon
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Chi tiết hóa đơn";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white text-center">
+                    <h4>Chi Tiết Hóa Đơn</h4>
+                </div>
+                <div class="card-body">
+                    <h5>Thông Tin Hóa Đơn</h5>
+                    <p><strong>Mã Hóa Đơn:</strong> @Model.MaHoaDon</p>
+                    <p><strong>Ngày Lập:</strong> @Model.NgayLapHoaDon.ToString("dd/MM/yyyy")</p>
+                    <p><strong>Tổng Tiền:</strong> @Model.TongTien.ToString("N0") VNĐ</p>
+
+                    <hr />
+
+                    <h5>Thông Tin Sử Dụng Dịch Vụ</h5>
+                    <p><strong>Mã Lần Sử Dụng:</strong> @Model.MaLanSuDungNavigation.MaLanSuDung</p>
+                    <p><strong>Tên Dịch Vụ:</strong> @Model.MaLanSuDungNavigation.MaDichVuNavigation?.TenDichVu</p>
+                    <p><strong>Số Lượng:</strong> @Model.MaLanSuDungNavigation.SoLuong</p>
+                    <p><strong>Ngày Bắt Đầu:</strong> @Model.MaLanSuDungNavigation.NgayBatDau.ToString("dd/MM/yyyy")</p>
+                    <p><strong>Địa Chỉ Liên Lạc:</strong> @Model.MaLanSuDungNavigation.DiaChiLienLac</p>
+                    <p><strong>Số Điện Thoại Liên Hệ:</strong> @Model.MaLanSuDungNavigation.SoDienThoaiLienHe</p>
+                    <p><strong>Tổng Tiền Dịch Vụ:</strong> @Model.MaLanSuDungNavigation.TongTien.ToString("N0") VNĐ</p>
+                    <p><strong>Nhân Viên Chỉ Định:</strong> @Model.MaLanSuDungNavigation.TenNhanVienChiDinh</p>
+                    <p><strong>Mô Tả Bệnh Lý:</strong> @Model.MaLanSuDungNavigation.MoTaBenhLy</p>
+
+                    <hr />
+
+                    <h5>Thông Tin Dịch Vụ</h5>
+                    <p><strong>Tên Dịch Vụ:</strong> @Model.MaLanSuDungNavigation.MaDichVuNavigation?.TenDichVu</p>
+                    <p><strong>Mô Tả:</strong> @Model.MaLanSuDungNavigation.MaDichVuNavigation?.MoTa</p>
+                    <p><strong>Đơn Vị Tính:</strong> @Model.MaLanSuDungNavigation.MaDichVuNavigation?.DonViTinh</p>
+
+                    <div class="text-center mt-4">
+                        <a href="@Url.Action("BinhLuanDanhGia", "SuDungDichVu", new { maDichVu = Model.MaLanSuDungNavigation.MaDichVu })"
+                           class="btn btn-primary">
+                            <i class="fas fa-comment-dots"></i> Bình luận & Đánh giá
+                        </a>
+
+                        <a asp-action="DanhSachDichVuDaDat" asp-controller="SuDungDichVu" asp-area="Customer" class="btn btn-secondary">
+                            Quay Lại
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

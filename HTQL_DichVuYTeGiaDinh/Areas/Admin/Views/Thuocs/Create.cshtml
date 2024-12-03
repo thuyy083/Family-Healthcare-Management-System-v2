@@ -1,0 +1,48 @@
+﻿@model HTQL_DichVuYTeGiaDinh.Models.Thuoc
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Thêm Thuốc Mới";
+}
+
+<h2>Thêm Thuốc Mới</h2>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label asp-for="TenThuoc" class="control-label">Tên thuốc</label>
+        <input asp-for="TenThuoc" class="form-control" />
+        <span asp-validation-for="TenThuoc" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="MoTaThuoc" class="control-label">Mô tả</label>
+        <textarea asp-for="MoTaThuoc" class="form-control"></textarea>
+        <span asp-validation-for="MoTaThuoc" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="HanSuDung" class="control-label">Hạn sử dụng</label>
+        <input asp-for="HanSuDung" class="form-control" type="number" />
+        <span asp-validation-for="HanSuDung" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="MaDvt" class="control-label">Đơn vị tính</label>
+        <select asp-for="MaDvt" class="form-control" asp-items="@(new SelectList(ViewBag.DonViTinhs, "MaDvt", "TenDvt"))"></select>
+        <span asp-validation-for="MaDvt" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Thêm Thuốc" class="btn btn-primary" />
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Trở về danh sách thuốc</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

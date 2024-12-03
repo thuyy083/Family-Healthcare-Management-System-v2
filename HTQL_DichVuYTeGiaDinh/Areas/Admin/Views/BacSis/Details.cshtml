@@ -1,0 +1,69 @@
+﻿@model HTQL_DichVuYTeGiaDinh.ViewModels.BacSiDetailsViewModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Chi tiết bác sĩ";
+}
+
+<div class="container py-5">
+    <h2>Chi tiết bác sĩ</h2>
+    <div class="card mb-4">
+        <div class="card-header bg-primary text-white">
+            Thông tin bác sĩ
+        </div>
+        <div class="card-body">
+            <p><strong>Họ tên:</strong> @Model.BacSi.HoTen</p>
+            <p><strong>Chuyên khoa:</strong> @Model.BacSi.MaChuyenKhoaNavigation?.TenChuyenKhoa</p>
+            <p><strong>Ngày sinh:</strong> @Model.BacSi.NgaySinh.ToString("dd/MM/yyyy")</p>
+            <p><strong>Giới tính:</strong> @(Model.BacSi.GioiTinh == 1 ? "Nam" : "Nữ")</p>
+            <p><strong>Số điện thoại:</strong> @Model.BacSi.SoDienThoai</p>
+            <p><strong>Địa chỉ email:</strong> @Model.BacSi.DiaChiEmail</p>
+            <p><strong>Địa chỉ:</strong> @Model.BacSi.DiaChi</p>
+            <p><strong>Trình độ học vấn:</strong> @Model.BacSi.TrinhDoHocVan</p>
+            <img src="@Url.Content("~/images/bacsi/" + Model.BacSi.HinhAnh)" alt="Ảnh bác sĩ" class="img-thumbnail" style="width: 200px;" />
+        </div>
+
+    </div>
+
+    <h3>Danh sách khách hàng thuộc hộ gia đình bác sĩ được phân công</h3>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>STT</th>
+                <th>Họ tên</th>
+                <th>Ngày sinh</th>
+                <th>Giới tính</th>
+                <th>Địa chỉ</th>
+                <th>Số điện thoại</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.KhachHangs != null && Model.KhachHangs.Any())
+            {
+                int stt = 1;
+                foreach (var khachHang in Model.KhachHangs)
+                {
+                    <tr>
+                        <td>@stt</td>
+                        <td>@khachHang.HoTen</td>
+                        <td>@khachHang.NgaySinh.ToString("dd/MM/yyyy")</td>
+                        <td>@(khachHang.GioiTinh == 1 ? "Nam" : "Nữ")</td>
+                        <td>@khachHang.DiaChi</td>
+                        <td>@khachHang.SoDienThoai</td>
+                        <td>@khachHang.DiaChiEmail</td>
+                    </tr>
+                    stt++;
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="7" class="text-center">Không có khách hàng nào trong hộ gia đình được phân công.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <a class="btn btn-primary" asp-area="Admin" asp-controller="BacSis" asp-action="Index">Quay lại</a>
+
+</div>

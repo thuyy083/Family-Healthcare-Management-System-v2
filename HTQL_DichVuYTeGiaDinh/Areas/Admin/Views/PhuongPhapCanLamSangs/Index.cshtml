@@ -1,0 +1,79 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@model IEnumerable<HTQL_DichVuYTeGiaDinh.Models.PhuongPhapCanLamSang>
+
+@{
+    ViewData["Title"] = "Danh sách phương pháp cận lâm sàng";
+    var stt = ViewBag.StartingIndex; // Tính toán số thứ tự bắt đầu từ trang hiện tại
+}
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-header">
+            <div class="d-flex align-items-center">
+                <h4 class="card-title">Danh sách phương pháp cận lâm sàng</h4>
+                <a asp-area="Admin" asp-action="Create" asp-controller="PhuongPhapCanLamSangs" class="btn btn-primary btn-round ms-auto">
+                    Thêm phương pháp cận lâm sàng
+                </a>
+            </div>
+        </div>
+        <div class="card-body">
+            <!-- Tìm kiếm -->
+            <form method="get" asp-area="Admin" asp-action="Index" asp-controller="PhuongPhapCanLamSangs">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" name="searchString" placeholder="Tìm kiếm phương pháp" value="@ViewBag.SearchString" />
+                    <button class="btn btn-primary" type="submit">Tìm kiếm</button>
+                </div>
+            </form>
+
+            <!-- Bảng danh sách chương trình -->
+            <div class="table-responsive">
+                <table class="display table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Tên phương pháp</th>
+                            <th>Yêu cầu đăc biệt</th>
+                            <th>Chi phí</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@stt</td>
+                                <td>@Html.DisplayFor(modelItem => item.TenPhuongPhap)</td>
+                                <td>@Html.DisplayFor(modelItem => item.YeuCauDacBiet)</td>
+                                <td>@item.ChiPhi.ToString("#,##0 ₫")</td>
+
+                                <td>
+                                    <a asp-area="Admin" asp-controller="PhuongPhapCanLamSangs" asp-action="Details" asp-route-id="@item.MaPhuongPhap"><i style="width:10px" class="fa fa-edit"></i></a>
+                                    <!--<a href="javascript:void(0);" onclick="confirmDelete(@item.MaPhuongPhap)"><i style="width:10px" class="fa fa-trash"></i></a> -->
+                                </td>
+                            </tr>
+                            stt = stt + 1;
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Phân trang -->
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center">
+                    @for (int i = 1; i <= ViewBag.TotalPages; i++)
+                    {
+                        <li class="page-item @(i == ViewBag.CurrentPage ? "active" : "")">
+                            <a class="page-link" href="@Url.Action("Index", new { page = i, searchString = ViewBag.SearchString })">@i</a>
+                        </li>
+                    }
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Html.AntiForgeryToken()
+
+
+}

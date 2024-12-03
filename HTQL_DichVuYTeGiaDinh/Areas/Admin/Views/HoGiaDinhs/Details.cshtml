@@ -1,0 +1,86 @@
+﻿@model HTQL_DichVuYTeGiaDinh.Models.HoGiaDinh
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Chi tiết hộ gia đình";
+}
+
+<div class="row">
+    <div class="col-md-6">
+        <h3>Thông tin hộ gia đình</h3>
+        <p><strong>Chủ hộ:</strong> @Model.ChuHo</p>
+        <p><strong>Địa chỉ:</strong> @Model.DiaChiHgd</p>
+        <p><strong>Số điện thoại:</strong> @Model.SodienthoaiHgd</p>
+    </div>
+    <div>
+        <a class="buttons btn btn-primary" asp-action="Edit" asp-route-id="@Model?.MaHgd"><i class="bi bi-pencil-square"></i></a>
+        <a class="buttons btn btn-primary" asp-action="ThemPhanCong" asp-route-id="@Model?.MaHgd">Thêm phân công bác sĩ</a>
+    </div>
+</div>
+
+<hr />
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-header">
+            <div class="d-flex align-items-center">
+                <h3>Danh sách thành viên trong gia đình</h3>
+                <a asp-area="Admin" asp-action="Create" asp-controller="KhachHangs" asp-route-id="@Model?.MaHgd" class="btn btn-primary btn-round ms-auto">
+                    Thêm thành viên
+                </a>
+            </div>
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Họ tên</th>
+                        <th>Ngày sinh</th>
+                        <th>Giới tính</th>
+                        <th>Quan hệ với chủ hộ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var khachHang in Model.KhachHangs)
+                    {
+                        <tr>
+                            <td>@khachHang.HoTen</td>
+                            <td>@khachHang.NgaySinh.ToString("dd/MM/yyyy")</td>
+                            <td>@(khachHang.GioiTinh == 1 ? "Nam" : "Nữ")</td>
+                            <td>@khachHang.MoiQuanHeVoiChuHo</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <hr />
+        <div class="card-body">
+            <h3>Danh sách bác sĩ được phân công</h3>
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Họ tên bác sĩ</th>
+                        <th>Chuyên khoa</th>
+                        <th>Thời gian bắt đầu</th>
+                        <th>Thời gian kết thúc</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var phanCong in Model.PhanCongBacSis)
+                    {
+                        <tr>
+                            <td>@phanCong.MaTkNavigation.HoTen</td>
+                            <td>@phanCong.MaTkNavigation.MaChuyenKhoaNavigation?.TenChuyenKhoa</td>
+                            <td>@phanCong.ThoiGianBatDau.ToString("dd/MM/yyyy")</td>
+                            <td>@phanCong.ThoiGianKetThuc.ToString("dd/MM/yyyy")</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+       
+
+    <a asp-action="Index" class="btn btn-secondary">Trở về danh sách</a>
+
+</div>

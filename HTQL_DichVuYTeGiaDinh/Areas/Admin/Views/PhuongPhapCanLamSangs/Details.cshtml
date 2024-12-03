@@ -1,0 +1,50 @@
+﻿@model HTQL_DichVuYTeGiaDinh.Models.PhuongPhapCanLamSang
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Chi tiết - " + Model.TenPhuongPhap;
+}
+
+
+
+<div>
+    <h4>Thông tin phương pháp cận lâm sàng</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Tên
+        </dt>
+        <dd class="col-sm-10">
+            @Model.TenPhuongPhap
+        </dd>
+
+        <dt class="col-sm-2">
+            Yêu cầu đặc biệt
+        </dt>
+        <dd class="col-sm-10">
+            @Model.YeuCauDacBiet
+        </dd>
+
+        <dt class="col-sm-2">
+            Chi phí
+        </dt>
+        <dd class="col-sm-10">
+            @Model.ChiPhi.ToString("#,##0 ₫")
+        </dd>
+
+        <dt class="col-sm-2">
+            Ghi chú
+        </dt>
+        <dd class="col-sm-10">
+            @Model.GhiChu
+        </dd>
+
+    </dl>
+    <a class="buttons btn btn-primary" asp-area="Admin" asp-controller="PhuongPhapCanLamSangs" asp-action="Edit" asp-route-id="@Model.MaPhuongPhap"><i class="bi bi-pencil-square"></i></a>
+
+</div>
+<br />
+<div>
+    <a asp-action="Index">Quay lại</a>
+</div>
+

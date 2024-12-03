@@ -1,0 +1,33 @@
+﻿@model HTQL_DichVuYTeGiaDinh.Models.PhanCongBacSi
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<h2>Thêm phân công bác sĩ</h2>
+
+<form asp-action="ThemPhanCong" method="post">
+    @if (ViewData.ModelState[""] != null && ViewData.ModelState[""].Errors.Count > 0)
+    {
+        <div class="alert alert-danger">
+            @ViewData.ModelState[""].Errors[0].ErrorMessage
+        </div>
+    }
+    <input type="hidden" asp-for="MaHgd" value="@Model.MaHgd" />
+
+    <div class="form-group">
+        <label for="MaTk">Chọn bác sĩ:</label>
+        <select asp-for="MaTk" class="form-control" asp-items="ViewBag.BacSiList"></select>
+    </div>
+
+    <div class="form-group">
+        <label for="ThoiGianBatDau">Thời gian bắt đầu:</label>
+        <input type="datetime-local" asp-for="ThoiGianBatDau" class="form-control" value="@Model.ThoiGianBatDau.ToString("yyyy-MM-ddTHH:mm")" />
+    </div>
+
+    <div class="form-group">
+        <label for="ThoiGianKetThuc">Thời gian kết thúc:</label>
+        <input type="datetime-local" asp-for="ThoiGianKetThuc" class="form-control" value="@Model.ThoiGianKetThuc.ToString("yyyy-MM-ddTHH:mm")" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Thêm phân công</button>
+    <a class="buttons btn btn-primary" asp-action="Details" asp-route-id="@Model?.MaHgd">Quay lại</a>
+
+</form>

@@ -1,0 +1,77 @@
+﻿@model HTQL_DichVuYTeGiaDinh.ViewModels.NhanVienEditViewModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Chỉnh sửa thông tin nhân viên";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white text-center">
+                    <h4>Chỉnh sửa thông tin nhân viên</h4>
+                </div>
+                <div class="card-body">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <form asp-action="Edit" asp-controller="TrangChu" method="post">
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-group mb-3">
+                            <label asp-for="HoTen" class="form-label">Họ tên</label>
+                            <input asp-for="HoTen" class="form-control" />
+                            <span asp-validation-for="HoTen" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label asp-for="NgaySinh" class="form-label">Ngày sinh</label>
+                            <input asp-for="NgaySinh" type="date" class="form-control" />
+                            <span asp-validation-for="NgaySinh" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label asp-for="SoCccd" class="form-label">Số CCCD</label>
+                            <input asp-for="SoCccd" class="form-control" />
+                            <span asp-validation-for="SoCccd" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label asp-for="GioiTinh" class="form-label">Giới tính</label>
+                            <select asp-for="GioiTinh" class="form-control">
+                                <option value="1">Nam</option>
+                                <option value="0">Nữ</option>
+                            </select>
+                            <span asp-validation-for="GioiTinh" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label asp-for="DiaChi" class="form-label">Địa chỉ</label>
+                            <input asp-for="DiaChi" class="form-control" />
+                            <span asp-validation-for="DiaChi" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label asp-for="SoDienThoai" class="form-label">Số điện thoại</label>
+                            <input asp-for="SoDienThoai" class="form-control" />
+                            <span asp-validation-for="SoDienThoai" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label asp-for="DiaChiEmail" class="form-label">Email</label>
+                            <input asp-for="DiaChiEmail" class="form-control" />
+                            <span asp-validation-for="DiaChiEmail" class="text-danger"></span>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Cập nhật</button>
+                        <a asp-action="Index" class="btn btn-secondary">Quay lại</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation/1.19.5/jquery.validate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js"></script>

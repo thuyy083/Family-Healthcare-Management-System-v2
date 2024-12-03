@@ -1,0 +1,21 @@
+﻿@model HTQL_DichVuYTeGiaDinh.Models.DichVuYTe
+
+<form asp-action="createDV" method="post">
+    @Html.AntiForgeryToken()
+    <div class="form-group">
+        <label for="TenDichVu">Tên Dịch Vụ</label>
+        <input type="text" class="form-control" asp-for="TenDichVu" required />
+    </div>
+
+    <div class="form-group">
+        <label for="MoTa">Mô Tả</label>
+        <textarea asp-for="MoTa" class="form-control"></textarea>
+    </div>
+
+    <div class="form-group">
+        <label for="DonViTinh">Đơn Vị Tính</label>
+        <input type="text" class="form-control" asp-for="DonViTinh" required />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Lưu</button>
+</form>

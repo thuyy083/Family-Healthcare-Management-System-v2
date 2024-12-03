@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\HTQL_DichVuYTeGiaDinh.props" />
+</Project>

@@ -1,0 +1,191 @@
+﻿@{
+    Layout = null;
+    var avatar = Context.Items["Avatar"]?.ToString() ?? "default-avatar.png";
+    var userName = Context.Items["UserName"]?.ToString() ?? "Khách";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"] - WellNess</title>
+
+    <!-- Preconnect and Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="~/assets/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/assets/vendors/iconly/bold.css" />
+    <link rel="stylesheet" href="~/assets/vendors/perfect-scrollbar/perfect-scrollbar.css" />
+    <link rel="stylesheet" href="~/assets/vendors/bootstrap-icons/bootstrap-icons.css" />
+    <link rel="stylesheet" href="~/assets/css/app.css" />
+    <link rel="shortcut icon" href="~/assets/images/favicon.svg" type="image/x-icon" />
+</head>
+<body>
+    <div id="app">
+        <!-- Sidebar Start -->
+        <div id="sidebar" class="active">
+            <div class="sidebar-wrapper active" style="width:323px">
+                <div class="sidebar-header">
+                    <div class="d-flex justify-content-between">
+                        <div class="logo">
+                            <a href="@Url.Action("Index", "TrangChu", new { area = "Staff" })">
+                                <img style="height: 100px" src="~/images/logo/Logo.png" alt="Logo" />
+                            </a>
+                        </div>
+                        <div class="toggler">
+                            <a href="#" class="sidebar-hide d-xl-none d-block">
+                                <i class="bi bi-x bi-middle"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="sidebar-menu">
+                    <ul class="menu">
+                        <li class="sidebar-item">
+                            <a href="@Url.Action("Index", "TrangChu", new { area = "Staff" })" class="sidebar-link">
+                                <i class="bi bi-house-door-fill"></i>
+                                <span>Trang chủ</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item">
+                            <a href="@Url.Action("Index", "Thuoc", new { area = "Staff" })" class="sidebar-link">
+                                <i class="bi bi-grid-1x2-fill"></i>
+                                <span>Nhập thuốc</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item">
+                            <a href="@Url.Action("DSDonThuoc", "PhieuThu", new { area = "Staff" })" class="sidebar-link">
+                                <i class="bi bi-grid-1x2-fill"></i>
+                                <span>Danh sách đơn thuốc</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item">
+                            <a href="@Url.Action("ThoiGianBieu", "LichLamViec", new { area = "Staff" })" class="sidebar-link">
+                                <i class="bi bi-grid-1x2-fill"></i>
+                                <span>Lịch làm việc</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+                <button class="sidebar-toggler btn x">
+                    <i data-feather="x"></i>
+                </button>
+            </div>
+        </div>
+        <!-- Sidebar End -->
+        <!-- Main Content Start -->
+        <div id="main">
+            <header class="mb-3">
+                <a href="#" class="burger-btn d-block d-xl-none">
+                    <i class="bi bi-justify fs-3"></i>
+                </a>
+                <!-- Navbar -->
+                <nav class="navbar navbar-expand-lg navbar-light bg-body-tertiary" style="padding:0px; height:10px">
+                    <!-- Container wrapper -->
+                    <div class="container-fluid">
+
+
+                        <!-- Collapsible wrapper -->
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <!-- Navbar brand -->
+                            
+                        </div>
+                        <!-- Collapsible wrapper -->
+                        <!-- Right elements -->
+                        <div class="d-flex align-items-center">
+
+
+                            <!-- Notifications 
+                            <div class="dropdown">
+                                <a data-mdb-dropdown-init
+                                   class="link-secondary me-3 dropdown-toggle hidden-arrow"
+                                   href="#"
+                                   id="navbarDropdownMenuLink"
+                                   role="button"
+                                   aria-expanded="false">
+                                    <i class="fas fa-bell"></i>
+                                    <span class="badge rounded-pill badge-notification bg-danger">1</span>
+                                </a>
+
+                            </div>
+                            -->
+                            <!-- Avatar -->
+                            <div class="dropdown">
+                                <a data-bs-toggle="dropdown"
+                                   class="dropdown-toggle d-flex align-items-center hidden-arrow"
+                                   href="#"
+                                   id="navbarDropdownMenuAvatar"
+                                   role="button"
+                                   aria-expanded="false">
+                                    <img src="@Url.Content("~/images/nhanvienyte/" + avatar)"
+                                         class="rounded-circle"
+                                         height="40"
+                                         alt="Avatar"
+                                         loading="lazy" />
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
+                                    <li>
+                                        <p class="dropdown-item disabled">@userName</p>
+                                    </li>
+                                    <li>
+                                        <a href="@Url.Action("Logout", "Account", new { area = "" })" class="dropdown-item text-danger">
+                                            <i class="fas fa-sign-out-alt"></i> Đăng Xuất
+                                        </a>
+
+
+                                    </li>
+
+
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- Right elements -->
+                    </div>
+                    <!-- Container wrapper -->
+                </nav>
+                <!-- Navbar -->
+            </header>
+
+            <!-- Page Heading -->
+            <div class="page-heading">
+                <h3>@ViewData["Heading"]</h3>
+            </div>
+
+            <!-- Page Content -->
+            <div class="page-content">
+                @RenderBody()
+            </div>
+
+            <!-- Footer -->
+            <footer>
+                <div class="footer clearfix mb-0 text-muted">
+                    <div class="float-start">
+                        <p>2024 &copy; WellNess</p>
+                    </div>
+                    <div class="float-end">
+                        <p>Võ Thị Cẩm Thùy</p>
+                    </div>
+                </div>
+            </footer>
+        </div>
+        <!-- Main Content End -->
+    </div>
+
+
+</body>
+<!-- JS Files -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/5.0.11/signalr.min.js"></script>
+<script src="~/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+<script src="~/assets/js/bootstrap.bundle.min.js"></script>
+<script src="~/assets/vendors/apexcharts/apexcharts.js"></script>
+<script src="~/assets/js/pages/dashboard.js"></script>
+<script src="~/assets/js/main.js"></script>
+@RenderSection("Scripts", required: false)
+</html>

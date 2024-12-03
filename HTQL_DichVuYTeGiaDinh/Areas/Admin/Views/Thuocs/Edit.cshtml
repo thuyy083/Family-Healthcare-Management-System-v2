@@ -1,0 +1,53 @@
+﻿@model HTQL_DichVuYTeGiaDinh.ViewModels.EditThuocViewModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Chỉnh sửa thuốc";
+}
+
+<h1>Chỉnh sửa thuốc</h1>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="MaThuoc" />
+
+    <div class="form-group">
+        <label asp-for="TenThuoc">Tên thuốc</label>
+        <input asp-for="TenThuoc" class="form-control" />
+        <span asp-validation-for="TenThuoc" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="MoTaThuoc">Mô tả</label>
+        <textarea asp-for="MoTaThuoc" class="form-control"></textarea>
+        <span asp-validation-for="MoTaThuoc" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="HanSuDung">Hạn sử dụng</label>
+        <input asp-for="HanSuDung" class="form-control" />
+        <span asp-validation-for="HanSuDung" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="SoLuong">Số lượng</label>
+        <input asp-for="SoLuong" class="form-control" />
+        <span asp-validation-for="SoLuong" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="MaDvt">Đơn vị tính</label>
+        <select asp-for="MaDvt" class="form-control" asp-items="@(new SelectList(Model.DonViTinhs, "MaDvt", "TenDvt"))">
+            <option value="">Chọn đơn vị tính</option>
+        </select>
+        <span asp-validation-for="MaDvt" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Lưu</button>
+    <a asp-action="Details" class="btn btn-secondary" asp-route-id="@Model?.MaThuoc">Hủy</a>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

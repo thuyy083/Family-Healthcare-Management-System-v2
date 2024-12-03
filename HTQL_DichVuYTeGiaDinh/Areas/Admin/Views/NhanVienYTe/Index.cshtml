@@ -1,0 +1,96 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@model IEnumerable<HTQL_DichVuYTeGiaDinh.Models.NhanVienYTe>
+
+@{
+    ViewData["Title"] = "Danh sách nhân viên y tế";
+    var stt = ViewBag.StartingIndex;
+}
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-header">
+            <div class="d-flex align-items-center">
+                <h4 class="card-title">Danh sách nhân viên y tế</h4>
+                <a asp-area="Admin" asp-action="Create" asp-controller="NhanVienYTe" class="btn btn-primary btn-round ms-auto">
+                    Thêm nhân viên y tế
+                </a>
+                <a asp-area="Admin" asp-action="HiddenStaff" asp-controller="NhanVienYTe" class="btn btn-warning btn-round ms-3">
+                    Nhân viên bị ẩn
+                </a>
+            </div>
+        </div>
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert alert-success">
+                @TempData["SuccessMessage"]
+            </div>
+        }
+        <div class="card-body">
+            <!-- Tìm kiếm -->
+            <form method="get" asp-area="Admin" asp-action="Index" asp-controller="NhanVienYTe">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" name="searchString" placeholder="Tìm kiếm nhân viên" value="@ViewBag.SearchString" />
+                    <button class="btn btn-primary" type="submit">Tìm kiếm</button>
+                </div>
+            </form>
+
+            <!-- Bảng danh sách nhân viên y tế -->
+            <div class="table-responsive">
+                <table class="display table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Họ tên</th>
+                            <th>Ngày sinh</th>
+                            <th>Số CCCD</th>
+                            <th>Giới tính</th>
+                            <th>Số điện thoại</th>
+                            <th>Email</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@stt</td>
+                                <td>@Html.DisplayFor(modelItem => item.HoTen)</td>
+                                <td>@item.NgaySinh.ToString("dd/MM/yyyy")</td>
+                                <td>@Html.DisplayFor(modelItem => item.SoCccd)</td>
+                                <td>@(item.GioiTinh == 1 ? "Nam" : "Nữ")</td>
+                                <td>@Html.DisplayFor(modelItem => item.SoDienThoai)</td>
+                                <td>@Html.DisplayFor(modelItem => item.DiaChiEmail)</td>
+                                <td>
+                                    <a asp-area="Admin" asp-controller="NhanVienYTe" asp-action="Details" asp-route-id="@item.MaTk"><i style="width:10px" class="fa fa-edit"></i></a>
+                                </td>
+                                <td>
+                                    <form asp-action="SoftDelete" method="post" style="display:inline;">
+                                        <input type="hidden" name="id" value="@item.MaTk" />
+                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Bạn có chắc chắn muốn xóa nhân viên này?');">
+                                            <i class="fa fa-trash"></i> Xóa
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                            stt = stt + 1;
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Phân trang -->
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center">
+                    @for (int i = 1; i <= ViewBag.TotalPages; i++)
+                    {
+                        <li class="page-item @(i == ViewBag.CurrentPage ? "active" : "")">
+                            <a class="page-link" href="@Url.Action("Index", new { page = i, searchString = ViewBag.SearchString })">@i</a>
+                        </li>
+                    }
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+

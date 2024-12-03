@@ -1,0 +1,57 @@
+﻿@model IEnumerable<HTQL_DichVuYTeGiaDinh.ViewModels.ThongKeThuocViewModel>
+@{
+    ViewData["Title"] = "Thống kê thuốc";
+}
+
+<h2>Thống kê thuốc</h2>
+
+<!-- Form lọc theo tháng và năm -->
+<form method="get">
+    <label for="month">Chọn tháng:</label>
+    <select id="month" name="month">
+        @foreach (var month in ViewBag.Months)
+        {
+            <option value="@month" @(month == ViewBag.SelectedMonth ? "selected" : "")>@month</option>
+        }
+    </select>
+
+    <label for="year">Chọn năm:</label>
+    <select id="year" name="year">
+        @foreach (var year in ViewBag.Years)
+        {
+            <option value="@year" @(year == ViewBag.SelectedYear ? "selected" : "")>@year</option>
+        }
+    </select>
+
+    <button type="submit">Lọc</button>
+</form>
+
+<!-- Hiển thị kết quả thống kê -->
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Tên thuốc</th>
+            <th>Tổng số lượng</th>
+            <th>Tần suất</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.TenThuoc</td>
+                    <td>@item.TongSoLuong</td>
+                    <td>@item.TanSuat</td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="3" class="text-center">Không có dữ liệu</td>
+            </tr>
+        }
+    </tbody>
+</table>

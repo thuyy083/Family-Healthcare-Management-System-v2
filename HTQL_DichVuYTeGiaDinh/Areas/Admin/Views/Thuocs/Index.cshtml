@@ -1,0 +1,85 @@
+﻿@model IEnumerable<HTQL_DichVuYTeGiaDinh.Models.Thuoc>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewBag.Title = "Danh Sách Thuốc";
+    var stt = ViewBag.StartingIndex;
+}
+
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-header">
+            <div class="d-flex align-items-center">
+                <h4 class="card-title">Danh sách thuốc</h4>
+                <a asp-area="Admin" asp-action="Create" asp-controller="Thuocs" class="btn btn-primary btn-round ms-auto">
+                    Thêm thuốc
+                </a>
+            </div>
+        </div>
+        <div class="card-body">
+            <!-- Tìm kiếm -->
+            <form method="get" asp-area="Admin" asp-action="Index" asp-controller="Thuocs">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" name="searchString" placeholder="Tìm kiếm thuốc" value="@ViewBag.SearchString" />
+                    <button class="btn btn-primary" type="submit">Tìm kiếm</button>
+                </div>
+            </form>
+            <div class="table-responsive">
+
+                <table class="display table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Tên Thuốc</th>
+                            <th>Hạn Sử Dụng (tháng)</th>
+                            <th>Số Lượng</th>
+                            <th>Đơn Vị Tính</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@stt</td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TenThuoc)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.HanSuDung)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.SoLuong)
+                                </td>
+                                <td>@Html.DisplayFor(modelItem => item.MaDvtNavigation.TenDvt)</td>
+
+                                <td>
+                                <td>
+                                    <a asp-area="Admin" asp-controller="Thuocs" asp-action="Details" asp-route-id="@item.MaThuoc">
+                                        <i style="width:10px" class="fa fa-edit"></i>
+                                    </a>
+                                    <!--
+                                    <a href="javascript:void(0);" onclick="confirmDelete(@item.MaThuoc)">
+                                        <i style="width:10px" class="fa fa-trash"></i>
+                                    </a>  Xác nhận xóa -->
+                                </td>
+                                
+                            </tr>
+                            stt = stt + 1;
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center">
+                    @for (int i = 1; i <= ViewBag.TotalPages; i++)
+                    {
+                        <li class="page-item @(i == ViewBag.CurrentPage ? "active" : "")">
+                            <a class="page-link" href="@Url.Action("Index", new { page = i, searchString = ViewBag.SearchString })">@i</a>
+                        </li>
+                    }
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>

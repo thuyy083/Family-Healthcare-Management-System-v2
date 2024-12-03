@@ -1,0 +1,90 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@model HTQL_DichVuYTeGiaDinh.Models.HoSoYTe
+
+<h2>Chi Tiết Hồ Sơ Y Tế</h2>
+
+<div>
+    <p><strong>Bác Sĩ:</strong> @Model.BacMaTkNavigation.HoTen</p>
+    <p><strong>Ngày Khám Bệnh:</strong> @Model.NgayKhamBenh.ToString("dd/MM/yyyy")</p>
+    <p><strong>Chẩn Đoán:</strong> @Model.ChanDoan</p>
+    <p><strong>Ngày Tái Khám:</strong> @(Model.NgayTaiKham.HasValue ? Model.NgayTaiKham.Value.ToString("dd/MM/yyyy") : "Không có")</p>
+    <p><strong>Thông Tin Khác:</strong> @Model.ThongTinKhac</p>
+
+    <div class="mt-3">
+
+         <a asp-area="Doctor" asp-controller="HoSoYTe" asp-action="AddCanLamSang" asp-route-hoSoId="@Model.MaHoSo" class="btn btn-primary">
+            <i class="fa fa-plus"></i> Thêm Kết Quả Cận Lâm Sàng
+        </a>
+
+         <a asp-area="Doctor" asp-controller="HoSoYTe" asp-action="AddDonThuoc" asp-route-hoSoId="@Model.MaHoSo" class="btn btn-success">
+            <i class="fa fa-prescription-bottle"></i> Kê Đơn Thuốc
+        </a>
+
+        <a asp-area="Doctor" asp-controller="HoSoYTe" asp-action="XuatDonThuocPdf" asp-route-maHoSo="@Model.MaHoSo" class="btn btn-danger">
+            <i class="fa fa-file-pdf"></i> Xuất Đơn Thuốc PDF
+        </a>
+    </div>
+
+    <div class="mt-4">
+        <h3>Kết Quả Cận Lâm Sàng</h3>
+        @if (Model.ChiTietKetQuaCanLamSangs.Any())
+        {
+            <ul>
+                @foreach (var ketQua in Model.ChiTietKetQuaCanLamSangs)
+                {
+                    <li>
+                        <a href="@Url.Content("~/images/kqcanlamsang/" + ketQua.HinhAnhKetQua)" target="_blank">
+                            <img src="@Url.Content("~/images/kqcanlamsang/" + ketQua.HinhAnhKetQua)" alt="Hình Ảnh" style="max-width:200px; max-height:150px;" />
+                        </a>
+                        <strong>@ketQua.MaPhuongPhapNavigation.TenPhuongPhap</strong>
+                    </li>
+                }
+            </ul>
+        }
+        else
+        {
+            <p>Không có kết quả cận lâm sàng nào được ghi nhận.</p>
+        }
+    </div>
+
+
+    <div class="mt-4">
+        <h3>Đơn Thuốc</h3>
+        @if (Model.DonThuocs.Any())
+        {
+            foreach (var donThuoc in Model.DonThuocs)
+            {
+                <div>
+                    <p><strong>Ngày Kê Đơn:</strong> @donThuoc.NgayKeDon.ToString("dd/MM/yyyy")</p>
+                    <p><strong>Trạng Thái:</strong> @donThuoc.TrangThaiDonThuoc</p>
+                    <p><strong>Ghi Chú:</strong> @(donThuoc.GhiChuDonThuoc ?? "Không có ghi chú")</p>
+                    
+                    <h4>Chi Tiết Đơn Thuốc</h4>
+                    @if (donThuoc.ChiTietDonThuocs.Any())
+                    {
+                        <ul>
+                            @foreach (var chiTiet in donThuoc.ChiTietDonThuocs)
+                            {
+                                <li>
+                                    <strong>Tên Thuốc:</strong> @chiTiet.MaThuocNavigation.TenThuoc <br />
+                                    <strong>Số Lượng:</strong> @chiTiet.SoLuong <br />
+                                    <strong>Hướng Dẫn Sử Dụng:</strong> @chiTiet.HuongDanSuDung
+                                </li>
+                            }
+                        </ul>
+                    }
+                    else
+                    {
+                        <p>Chưa có chi tiết đơn thuốc.</p>
+                    }
+                </div>
+                <hr />
+            }
+        }
+        else
+        {
+            <p>Chưa có đơn thuốc.</p>
+        }
+    </div>
+</div>

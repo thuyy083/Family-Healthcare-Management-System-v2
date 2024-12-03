@@ -1,0 +1,106 @@
+﻿@model HTQL_DichVuYTeGiaDinh.ViewModels.CreateBacSiViewModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "Thêm bác sĩ";
+}
+
+<h2>Thêm Bác sĩ</h2>
+
+<form asp-action="Create" enctype="multipart/form-data" method="post">
+    @* Hiển thị các lỗi chung *@
+    @if (!ViewData.ModelState.IsValid)
+    {
+        <div class="text-danger">
+            <ul>
+                @foreach (var modelState in ViewData.ModelState.Values)
+                {
+                    foreach (var error in modelState.Errors)
+                    {
+                        <li>@error.ErrorMessage</li>
+                    }
+                }
+            </ul>
+        </div>
+    }
+    <div class="form-group">
+        <label asp-for="HoTen">Họ tên</label>
+        <input asp-for="HoTen" class="form-control" />
+        <span asp-validation-for="HoTen" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="NgaySinh">Ngày sinh</label>
+        <input asp-for="NgaySinh" type="date" class="form-control" />
+        <span asp-validation-for="NgaySinh" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="SoCccd">Số CCCD</label>
+        <input asp-for="SoCccd" class="form-control" />
+        <span asp-validation-for="SoCccd" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="GioiTinh">Giới tính</label>
+        <select asp-for="GioiTinh" class="form-control">
+            <option value="0">Nữ</option>
+            <option value="1">Nam</option>
+        </select>
+        <span asp-validation-for="GioiTinh" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="DiaChi">Địa chỉ</label>
+        <input asp-for="DiaChi" class="form-control" />
+        <span asp-validation-for="DiaChi" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="SoDienThoai">Số điện thoại</label>
+        <input asp-for="SoDienThoai" class="form-control" />
+        <span asp-validation-for="SoDienThoai" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="MatKhau">Mật khẩu</label>
+        <input asp-for="MatKhau" type="password" class="form-control" />
+        <span asp-validation-for="MatKhau" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="DiaChiEmail">Email</label>
+        <input asp-for="DiaChiEmail" class="form-control" />
+        <span asp-validation-for="DiaChiEmail" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="TrinhDoHocVan">Trình độ học vấn</label>
+        <input asp-for="TrinhDoHocVan" class="form-control" />
+        <span asp-validation-for="TrinhDoHocVan" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="HinhAnh">Hình ảnh</label>
+        <input asp-for="HinhAnh" type="file" class="form-control" />
+        <span asp-validation-for="HinhAnh" class="text-danger"></span>
+    </div>
+
+
+
+    <div class="form-group">
+        <label asp-for="MaChuyenKhoa">Chuyên khoa</label>
+        <select asp-for="MaChuyenKhoa" class="form-control">
+            @foreach (var chuyenKhoa in Model.ChuyenKhoas)
+            {
+                <option value="@chuyenKhoa.MaChuyenKhoa">@chuyenKhoa.TenChuyenKhoa</option>
+            }
+        </select>
+        <span asp-validation-for="MaChuyenKhoa" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Lưu</button>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

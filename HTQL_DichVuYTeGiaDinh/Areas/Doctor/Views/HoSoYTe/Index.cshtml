@@ -1,0 +1,37 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@model IEnumerable<dynamic>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Tháng</th>
+            <th>Năm</th>
+            <th>Hồ Sơ Y Tế</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var group in Model)
+        {
+            <tr>
+                <td>@group.Month</td>
+                <td>@group.Year</td>
+                <td>
+                    <ul>
+                        @foreach (var hoSo in group.HoSoYTes)
+                        {
+                            <li>
+                                @hoSo.ChanDoan - @hoSo.NgayKhamBenh.ToString("dd/MM/yyyy")
+                                    <a asp-area="Doctor" asp-controller="HoSoYTe" asp-action="Details" asp-route-id="@hoSo.MaHoSo">
+                                        <i class="fa fa-eye"></i> Xem Chi Tiết
+                                    </a>
+                            </li>
+                        }
+                    </ul>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+

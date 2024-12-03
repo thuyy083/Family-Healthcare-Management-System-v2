@@ -1,0 +1,51 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@model HTQL_DichVuYTeGiaDinh.Models.SuDungDichVu
+
+@{
+    ViewData["Title"] = "Duyệt Đơn Dịch Vụ";
+}
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Duyệt Đơn Dịch Vụ</h2>
+
+    <form asp-action="DuyetDon" method="post">
+        <input type="hidden" name="id" value="@Model.MaLanSuDung" />
+
+        <div class="card mb-4">
+            <div class="card-header bg-primary text-white">
+                Thông Tin Dịch Vụ
+            </div>
+            <div class="card-body">
+                <p><strong>Tên Dịch Vụ:</strong> @Model.MaDichVuNavigation?.TenDichVu</p>
+                <p><strong>Ngày Bắt Đầu:</strong> @Model.NgayBatDau.ToString("dd/MM/yyyy")</p>
+                <p><strong>Số Lượng:</strong> @Model.SoLuong</p>
+                <p><strong>Tổng Tiền:</strong> @Model.TongTien.ToString("N0") VNĐ</p>
+                <p><strong>Địa Chỉ Liên Lạc:</strong> @Model.DiaChiLienLac</p>
+                <p><strong>Số Điện Thoại:</strong> @Model.SoDienThoaiLienHe</p>
+                @if (!string.IsNullOrEmpty(Model.TenNhanVienChiDinh))
+                {
+                    <p><strong>Nhân Viên Được Chỉ Định:</strong> @Model.TenNhanVienChiDinh</p>
+                }
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="maNhanVien">Chọn Nhân Viên Y Tế</label>
+            <select class="form-control" id="maNhanVien" name="maNhanVien" required>
+                <option value="">-- Chọn nhân viên --</option>
+                @foreach (var nhanVien in ViewBag.DanhSachNhanVien)
+                {
+                    <option value="@nhanVien.MaTk">@nhanVien.HoTen</option>
+                }
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-success mt-3">
+            <i class="fas fa-check"></i> Duyệt Đơn
+        </button>
+        <a href="@Url.Action("Details", new { id = Model.MaLanSuDung })" class="btn btn-secondary mt-3">
+            <i class="fas fa-arrow-left"></i> Quay Lại
+        </a>
+    </form>
+</div>

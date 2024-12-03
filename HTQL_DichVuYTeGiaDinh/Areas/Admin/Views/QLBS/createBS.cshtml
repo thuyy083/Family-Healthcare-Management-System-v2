@@ -1,0 +1,127 @@
+﻿@model HTQL_DichVuYTeGiaDinh.Models.BacSi
+@{
+    ViewBag.Title = "Thêm Bác sĩ";
+}
+<div class="col-9">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">Thêm Bác sĩ</h4>
+        </div>
+        <div class="card-content">
+            <div class="card-body">
+                <form asp-action="createBS" asp-controller="QLBS" asp-area="Admin" method="post" enctype="multipart/form-data">
+                    @Html.AntiForgeryToken()
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="HoTen">Họ tên</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" placeholder="Họ tên" asp-for="@Model.HoTen" />
+                                <span asp-validation-for="HoTen" class="text-danger"></span>
+                            </div>
+                            <p>
+
+                            </p>
+                            <div class="col-md-4">
+                                <label for="NgaySinh">Ngày sinh</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="date" class="form-control" asp-for="@Model.NgaySinh.ToString("yyyy-MM-dd")" />
+                            </div>
+                            <p>
+
+                            </p>
+                            <div class="col-md-4">
+                                <label for="HoTen">Số CCCD</label>
+                            </div>
+
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" placeholder="Số CCCD" asp-for="@Model.SoCccd" required />
+                            </div>
+                            <p>
+
+                            </p>
+                            <div class="col-md-4">
+                                <label for="HoTen">Điạ chỉ</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" placeholder="Địa chỉ" asp-for="@Model.DiaChi" required />
+                            </div>
+                            <p>
+
+                            </p>
+                            <div class="col-md-4">
+                                <label for="HoTen">Email</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" placeholder="Email" asp-for="@Model.DiaChiEmail" required />
+                            </div>
+                            <p>
+
+                            </p>
+                            <div class="col-md-4">
+                                <label for="HoTen">Trình độ</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" placeholder="Trình độ" asp-for="@Model.TrinhDoHocVan" required />
+                            </div>
+                            <p>
+
+                            </p>
+                            <div class="col-md-4">
+                                <label for="HoTen">Chuyên khoa</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" placeholder="Chuyên khoa" asp-for="@Model.MaChuyenKhoa" required />
+
+                            </div>
+                            <p>
+
+                            </p>
+                            <div class="col-md-4">
+                                <label for="GioiTinh">Giới tính</label>
+                            </div>
+                            <div class="col-md-8">
+                                <select class="form-select" id="GioiTinh" name="GioiTinh" required>
+                                    <option asp-for="0" @(Model.GioiTinh == 0 ? "selected" : "")>Nữ</option>
+                                    <option asp-for="1" @(Model.GioiTinh == 1 ? "selected" : "")>Nam</option>
+                                </select>
+                            </div>
+                            <p>
+
+                            </p>
+                            <div class="col-md-4">
+                                <label for="SoDienThoai">Số điện thoại</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" placeholder="Số điện thoại" asp-for="@Model.SoDienThoai" required />
+                            </div>
+                            <p>
+
+                            </p>
+                            <div class="col-md-4">
+                                <label for="MatKhau">Mật khẩu</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="password" class="form-control" placeholder="Mật khẩu" asp-for="@Model.MatKhau" required />
+                            </div>
+                            <p>
+
+                            </p>
+                            <p>
+
+                            </p>
+                            <div class="col-12 d-flex justify-content-end">
+                                <button type="submit" class="btn btn-primary me-1 mb-1">Lưu</button>
+                                <button type="reset" class="btn btn-light-secondary me-1 mb-1">Nhập lại</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                
+            </div>
+        </div>
+    </div>
+</div>

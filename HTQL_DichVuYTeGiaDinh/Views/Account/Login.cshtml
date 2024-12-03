@@ -1,0 +1,301 @@
+﻿@{
+    Layout = null;
+    ViewBag.Title = "Đăng nhập";
+}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <title>HTQL dịch vụ y tế gia đình</title>
+    <link rel="icon" type="image/png" href="~/images/logo/icon.png" />
+    <link rel="stylesheet" href="~/css/style.css" asp-append-version="true" />
+    <style>
+        /* Chủ đề chính */
+        :root {
+            --primary-color: #00c6a9;
+            --primary-color-light: #00e6c1;
+            --text-color: #ffffff;
+            --background-color: #f8f9fa;
+        }
+
+        /* Header */
+        .header {
+            background-color: var(--primary-color) !important;
+            color: var(--text-color);
+        }
+
+            .header a {
+                color: var(--text-color) !important;
+                text-decoration: none;
+            }
+
+
+
+        /* Form đăng nhập */
+        .dangnhap .form-floating input {
+            border: 2px solid var(--primary-color) !important;
+            border-radius: 5px !important;
+        }
+
+            .dangnhap .form-floating input:focus {
+                border-color: var(--primary-color-light) !important;
+                box-shadow: 0 0 5px var(--primary-color-light) !important;
+            }
+
+        .dangnhap .form-floating label {
+            color: var(--primary-color);
+        }
+
+        .dangnhap .btn-primary {
+            background-color: var(--primary-color) !important;
+            border-color: var(--primary-color) !important;
+        }
+
+            .dangnhap .btn-primary:hover {
+                background-color: var(--primary-color-light) !important;
+                border-color: var(--primary-color-light) !important;
+            }
+
+        /* Nền form */
+        .bg-light {
+            background-color: var(--background-color) !important;
+            border: 1px solid var(--primary-color-light);
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            padding: 10px 0;
+            text-align: center;
+        }
+
+            footer a {
+                color: var(--text-color);
+            }
+
+                footer a:hover {
+                    color: var(--primary-color-light);
+                }
+
+        /* Căn chỉnh hình ảnh */
+        .dangnhap img {
+            border-radius: 5px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="header py-3">
+        <div class="container d-flex align-items-center justify-content-between">
+                <img src="~/images/logo/icon.png" alt="Logo" style="width: 50px; height: 50px; object-fit: cover;">
+                <h1 class="ms-3 fs-4 mb-0">HỆ THỐNG QUẢN LÝ DỊCH VỤ Y TẾ GIA ĐÌNH</h1>
+            <nav>
+                <a href="@Url.Action("TrangChu", "Home")" class="btn fw-bold">
+                    <i class="fas fa-home me-1"></i> Trang chủ
+                </a>
+            </nav>
+        </div>
+    </div>
+
+    <div class="dangnhap">
+        <div class="container-xxl py-5">
+            <div class="container">
+                <div class="bg-light rounded">
+                    <div class="row g-0">
+                        <div class="col-lg-6">
+                            <div class="h-100 d-flex flex-column justify-content-center p-5">
+                                <h3 class="mb-4">Đăng nhập</h3>
+                                <hr />
+                                @if (!ViewData.ModelState.IsValid)
+                                {
+                                    <div class="alert alert-danger">
+                                        <ul>
+                                            @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                                            {
+                                                <li>@error.ErrorMessage</li>
+                                            }
+                                        </ul>
+                                    </div>
+                                }
+
+                                <form asp-action="Login" method="post">
+                                    @Html.AntiForgeryToken()
+                                    <div class="row g-3">
+                                        <div class="col-sm-12">
+                                            <div class="form-floating">
+                                                <input type="text" name="soDienThoai" class="form-control" placeholder="Số điện thoại" value="@ViewData["SoDienThoai"]" />
+                                                <label for="soDienThoai">Số điện thoại</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-12">
+                                            <div class="form-floating">
+                                                <input type="password" name="matKhau" class="form-control" placeholder="Mật khẩu" />
+                                                <label for="matKhau">Mật khẩu</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group mt-3">
+                                            <button type="submit" class="btn btn-primary w-100 py-3">Đăng nhập</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-lg-6" style="min-height: 400px;">
+                            <div class="position-relative h-100">
+                                <img class="position-absolute w-100 h-100 rounded" src="~/images/logo/background_login.jpg" style="object-fit: cover;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- info section -->
+        <section class="info_section ">
+            <div class="container">
+                <!--
+                <div class="info_top">
+                    <div class="info_logo">
+                        <a href="">
+                            <img src="~/images/logo/icon.png" alt="Logo" asp-append-version="true" />
+                        </a>
+                    </div>
+
+                </div>
+                -->
+                <div class="info_bottom layout_padding2">
+                    <div class="row info_main_row">
+                        <div class="col-md-6 col-lg-3">
+                            <h5>
+                                Địa chỉ
+                            </h5>
+                            <div class="info_contact">
+                                <a href="">
+                                    <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                    <span>
+                                        Location
+                                    </span>
+                                </a>
+                                <a href="">
+                                    <i class="fa fa-phone" aria-hidden="true"></i>
+                                    <span>
+                                        Call +01 1234567890
+                                    </span>
+                                </a>
+                                <a href="">
+                                    <i class="fa fa-envelope"></i>
+                                    <span>
+                                        demo@gmail.com
+                                    </span>
+                                </a>
+                            </div>
+                            <div class="social_box">
+                                <a href="">
+                                    <i class="fa fa-facebook" aria-hidden="true"></i>
+                                </a>
+                                <a href="">
+                                    <i class="fa fa-twitter" aria-hidden="true"></i>
+                                </a>
+                                <a href="">
+                                    <i class="fa fa-linkedin" aria-hidden="true"></i>
+                                </a>
+                                <a href="">
+                                    <i class="fa fa-instagram" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-3">
+                            <div class="info_links">
+                                <h5>
+                                    LIÊN KẾT
+                                </h5>
+                                <div class="info_links_menu">
+                                    <a class="active" href="@Url.Action("TrangChu", "Home")">
+                                        Trang chủ
+                                    </a>
+                                    <a href="@Url.Action("GioiThieu", "Home")">
+                                        Giới thiệu
+                                    </a>
+                                    <a href="@Url.Action("Dịch vụ", "Home")">
+                                        Dịch vụ
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-3">
+                            <div class="info_post">
+                                <h5>
+                                    BÀI VIẾT MỚI NHẤT
+                                </h5>
+                                <div class="post_box">
+                                    <div class="img-box">
+                                        <img src="~/images/logo/post1.jpg" alt="">
+                                    </div>
+                                    <p>
+                                        Bí Quyết
+                                        Nuôi Bệnh Hiệu Quả
+                                    </p>
+                                </div>
+                                <div class="post_box">
+                                    <div class="img-box">
+                                        <img src="~/images/logo/post2.jpg" alt="">
+                                    </div>
+                                    <p>
+                                        Nâng Cao Nhận Thức
+                                        Về Nuôi Bệnh
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-3">
+                            <div class="info_post">
+                                <h5>
+                                    TIN TỨC
+                                </h5>
+                                <div class="post_box">
+                                    <div class="img-box">
+                                        <img src="~/images/logo/post3.jpg" alt="">
+                                    </div>
+                                    <p>
+                                        Sự Kiện Tư Vấn:
+                                        Nuôi Bệnh và Chăm Sóc Sức Khỏe
+                                    </p>
+                                </div>
+                                <div class="post_box">
+                                    <div class="img-box">
+                                        <img src="~/images/logo/post4.png" alt="">
+                                    </div>
+                                    <p>
+                                        Hành trình hồi phục
+                                        của bệnh nhân tại phòng khám
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- end info_section -->
+
+        <!-- Footer Section -->
+        <footer class="footer_section">
+            <div class="container">
+                <p>&copy; <span id="displayYear"></span> Phòng khám đa khoa Sonny</p>
+            </div>
+        </footer>
+        <!-- Footer Scripts -->
+    </div>
+
+    <script src="~/js/jquery-3.4.1.min.js" asp-append-version="true"></script>
+    <script src="~/js/bootstrap.js" asp-append-version="true"></script>
+    <script src="~/js/custom.js" asp-append-version="true"></script>
+</body>

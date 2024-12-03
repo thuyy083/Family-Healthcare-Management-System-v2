@@ -1,0 +1,51 @@
+﻿@model IEnumerable<HTQL_DichVuYTeGiaDinh.Models.KhachHang>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<h2>Danh Sách Bệnh Nhân</h2>
+
+<form asp-action="DanhSachBenhNhan" method="get">
+    <p>
+        Tìm kiếm: <input type="text" name="searchString" value="@ViewBag.SearchString" />
+        <input type="submit" value="Tìm kiếm" />
+    </p>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Tên Bệnh Nhân</th>
+            <th>Ngày Sinh</th>
+            <th>Giới Tính</th>
+            <th>Số Điện Thoại</th>
+            <th>Email</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var benhNhan in Model)
+        {
+            <tr>
+                <td>@benhNhan.HoTen</td>
+                <td>@benhNhan.NgaySinh.ToShortDateString()</td>
+                <td>@(benhNhan.GioiTinh == 1 ? "Nam" : "Nữ")</td>
+                <td>@benhNhan.SoDienThoai</td>
+                <td>@benhNhan.DiaChiEmail</td>
+                <td>
+                    <a asp-area="Doctor" asp-controller="BenhNhan" asp-action="Details" asp-route-id="@benhNhan.MaTk"><i style="width:10px" class="fa fa-edit"></i></a>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+        @for (int i = 1; i <= ViewBag.TotalPages; i++)
+        {
+            <li class="page-item @(i == ViewBag.CurrentPage ? "active" : "")">
+                <a class="page-link" href="@Url.Action("DanhSachBenhNhan", new { page = i, searchString = ViewBag.SearchString })">@i</a>
+            </li>
+        }
+    </ul>
+</nav>

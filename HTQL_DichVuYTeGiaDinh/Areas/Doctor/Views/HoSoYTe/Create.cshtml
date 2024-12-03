@@ -1,0 +1,55 @@
+﻿@model HTQL_DichVuYTeGiaDinh.Models.HoSoYTe
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Thêm Hồ Sơ Y Tế";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Create" method="post">
+            <div class="form-group">
+                <label asp-for="MaTk" class="control-label">Mã Tài Khoản Bệnh Nhân</label>
+                <input asp-for="MaTk" class="form-control" readonly />
+                <span asp-validation-for="MaTk" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="NgayKhamBenh" class="control-label">Ngày Khám Bệnh</label>
+                <input asp-for="NgayKhamBenh" class="form-control" readonly />
+                <span asp-validation-for="NgayKhamBenh" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ChanDoan" class="control-label">Chẩn Đoán</label>
+                <textarea asp-for="ChanDoan" class="form-control"></textarea>
+                <span asp-validation-for="ChanDoan" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="NgayTaiKham" class="control-label">Ngày Tái Khám</label>
+                <input asp-for="NgayTaiKham" class="form-control" type="date" />
+                <span asp-validation-for="NgayTaiKham" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ThongTinKhac" class="control-label">Thông Tin Khác</label>
+                <textarea asp-for="ThongTinKhac" class="form-control"></textarea>
+                <span asp-validation-for="ThongTinKhac" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Lưu" class="btn btn-primary" />
+                <a asp-action="Details" asp-controller="BenhNhan" asp-route-id="@Model.MaTk" class="btn btn-secondary">Hủy</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

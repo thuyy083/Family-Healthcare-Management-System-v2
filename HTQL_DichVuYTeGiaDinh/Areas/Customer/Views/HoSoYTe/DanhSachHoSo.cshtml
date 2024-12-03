@@ -1,0 +1,76 @@
+﻿@model IEnumerable<HTQL_DichVuYTeGiaDinh.Models.HoSoYTe>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Danh Sách Hồ Sơ Y Tế";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white text-center">
+                    <h4>Danh Sách Hồ Sơ Y Tế</h4>
+                </div>
+                <div class="card-body">
+                    @if (!Model.Any())
+                    {
+                        <p class="text-center text-muted">Không có hồ sơ y tế nào được tìm thấy.</p>
+                    }
+                    else
+                    {
+                        <table class="table table-bordered table-striped mt-3">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>STT</th>
+                                    <th>Ngày Khám Bệnh</th>
+                                    <th>Chẩn Đoán</th>
+                                    <th>Ngày Tái Khám</th>
+                                    <th>Bác Sĩ</th>
+                                    <th>Thông Tin Khác</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (Model.Any())
+                                {
+                                    int stt = ViewBag.StartingIndex;
+                                    foreach (var hoSo in Model)
+                                    {
+                                        <tr>
+                                            <td>@stt</td>
+                                            <td>@hoSo.NgayKhamBenh.ToString("dd/MM/yyyy")</td>
+                                            <td>@hoSo.ChanDoan</td>
+                                            <td>@(hoSo.NgayTaiKham?.ToString("dd/MM/yyyy"))</td>
+                                            <td>@hoSo.BacMaTkNavigation?.HoTen</td>
+                                            <td>@hoSo.ThongTinKhac</td>
+                                            <td>
+                                                <a asp-action="ChiTietHoSo" asp-route-id="@hoSo.MaHoSo" class="btn btn-info btn-sm">
+                                                    <i class="fas fa-eye"></i> Xem Chi Tiết
+                                                </a>
+                                            </td>
+
+                                        </tr>
+                                        stt++;
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Phân trang -->
+    <nav aria-label="Page navigation example" class="mt-4">
+        <ul class="pagination justify-content-center">
+            @for (int i = 1; i <= ViewBag.TotalPages; i++)
+            {
+                <li class="page-item @(i == ViewBag.CurrentPage ? "active" : "")">
+                    <a class="page-link" href="@Url.Action("DanhSachHoSo", new { page = i })">@i</a>
+                </li>
+            }
+        </ul>
+    </nav>
+</div>

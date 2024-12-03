@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\HTQL_DichVuYTeGiaDinh.props" />
+</Project>

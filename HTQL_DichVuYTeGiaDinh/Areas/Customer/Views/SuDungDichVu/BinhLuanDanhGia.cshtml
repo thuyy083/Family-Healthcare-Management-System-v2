@@ -1,0 +1,75 @@
+﻿@model HTQL_DichVuYTeGiaDinh.Models.BinhLuan
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Bình luận và Đánh giá";
+}
+
+<div class="container mt-5">
+    <style>
+        .rating-star:hover {
+            transform: scale(1.2);
+            transition: 0.2s ease-in-out;
+        }
+    </style>
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white text-center">
+                    <h4>Đánh giá dịch vụ: @ViewBag.TenDichVu</h4>
+                </div>
+                <div class="card-body">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <form asp-action="BinhLuanDanhGia" method="post">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" asp-for="MaDichVu" />
+
+                        <!-- Phần đánh giá bằng ngôi sao -->
+                        <div class="form-group mb-4">
+                            <label class="form-label">Điểm đánh giá</label>
+                            <div id="starRating" class="d-flex justify-content-center mb-2">
+                                @for (int i = 1; i <= 5; i++)
+                                {
+                                    <i class="fa fa-star rating-star" data-value="@i" style="font-size: 2rem; cursor: pointer; color: lightgray;"></i>
+                                }
+                            </div>
+                            <input type="hidden" asp-for="DiemDanhGia" id="ratingValue" />
+                            <span asp-validation-for="DiemDanhGia" class="text-danger"></span>
+                        </div>
+
+                        <!-- Phần nhập bình luận -->
+                        <div class="form-group mb-3">
+                            <label asp-for="NoiDungBinhLuan" class="form-label">Bình luận</label>
+                            <textarea asp-for="NoiDungBinhLuan" class="form-control" rows="4"></textarea>
+                            <span asp-validation-for="NoiDungBinhLuan" class="text-danger"></span>
+                        </div>
+
+                        <button type="submit" class="btn btn-success">Gửi đánh giá</button>
+                        <a asp-action="XemHoaDon" asp-controller="HoaDon" asp-route-id="@Model.MaDichVu"
+                           class="btn btn-secondary">Quay lại</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- JavaScript for star rating -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const stars = document.querySelectorAll('.rating-star');
+        const ratingInput = document.getElementById('ratingValue');
+
+        stars.forEach(star => {
+            star.addEventListener('click', function () {
+                const value = this.getAttribute('data-value');
+                ratingInput.value = value;
+
+                // Đổi màu các ngôi sao
+                stars.forEach(s => {
+                    s.style.color = (s.getAttribute('data-value') <= value) ? 'gold' : 'lightgray';
+                });
+            });
+        });
+    });
+</script>

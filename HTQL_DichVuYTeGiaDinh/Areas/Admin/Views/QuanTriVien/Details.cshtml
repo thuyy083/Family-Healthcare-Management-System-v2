@@ -1,0 +1,36 @@
+﻿@model HTQL_DichVuYTeGiaDinh.Models.NhanVienYTe
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Chi tiết";
+}
+
+<div class="container py-5">
+    <h2>Thông tin cá nhân quản trị viên</h2>
+
+    <div class="card mb-4">
+        <div class="card-header bg-primary text-white">
+            Thông tin cá nhân
+        </div>
+        <div class="card-body">
+            <p><strong>Họ tên:</strong> @Model.HoTen</p>
+            <p><strong>Ngày sinh:</strong> @Model.NgaySinh.ToString("dd/MM/yyyy")</p>
+            <p><strong>Giới tính:</strong> @(Model.GioiTinh == 1 ? "Nam" : "Nữ")</p>
+            <p><strong>Số CCCD:</strong> @Model.SoCccd</p>
+            <p><strong>Số điện thoại:</strong> @Model.SoDienThoai</p>
+            <p><strong>Địa chỉ:</strong> @Model.DiaChi</p>
+            <p><strong>Email:</strong> @Model.DiaChiEmail</p>
+            <img src="@Url.Content("~/images/quantrivien/" + Model.HinhAnh)" alt="Ảnh qtv" class="img-thumbnail" style="width: 200px;" />
+        </div>
+    </div>
+    <!-- Nút Xóa -->
+    <form asp-action="Delete" asp-controller="QuanTriVien" method="post">
+        @Html.AntiForgeryToken()
+        <input type="hidden" name="id" value="@Model.MaTk" />
+        <button type="submit" class="btn btn-danger" onclick="return confirm('Bạn có chắc chắn muốn xóa nhân viên này không?');">
+            Xóa
+        </button>
+    </form>
+
+
+</div>

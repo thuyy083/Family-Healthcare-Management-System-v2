@@ -1,0 +1,67 @@
+﻿@model IEnumerable<HTQL_DichVuYTeGiaDinh.ViewModels.ThongKeDichVuViewModel>
+@{
+    ViewBag.Title = "Thống Kê Dịch Vụ Y Tế";
+}
+
+<h2>Thống Kê Số Lượt Khám Chữa Bệnh Theo Dịch Vụ Y Tế</h2>
+
+<!-- Form chọn tháng và năm để lọc -->
+<form method="get" asp-action="ThongKeDichVu">
+    <div class="mb-3">
+        <label for="month" class="form-label">Tháng:</label>
+        <select name="month" id="month" class="form-select">
+            @foreach (var month in ViewBag.Months)
+            {
+                <option value="@month" @(month == ViewBag.SelectedMonth ? "selected" : "")>@month</option>
+            }
+        </select>
+
+        <label for="year" class="form-label">Năm:</label>
+        <select name="year" id="year" class="form-select">
+            @foreach (var year in ViewBag.Years)
+            {
+                <option value="@year" @(year == ViewBag.SelectedYear ? "selected" : "")>@year</option>
+            }
+        </select>
+        <button type="submit" class="btn btn-primary mt-3">Lọc</button>
+    </div>
+</form>
+
+<!-- Hiển thị bảng thống kê -->
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Tên Dịch Vụ</th>
+            <th>Tổng Số Lượt Sử Dụng</th>
+            <th>Đánh Giá Trung Bình</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.TenDichVu</td>
+                    <td>@item.TongSoLuot</td>
+                    <td>
+                        @if (item.DanhGiaTrungBinh == null)
+                        {
+                            <span class="text-muted">Chưa có đánh giá</span>
+                        }
+                        else
+                        {
+                            @string.Format("{0:0.0}", item.DanhGiaTrungBinh)
+                        }
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="3" class="text-center">Không có dữ liệu</td>
+            </tr>
+        }
+    </tbody>
+</table>

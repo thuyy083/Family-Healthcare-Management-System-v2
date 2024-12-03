@@ -1,0 +1,113 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@model HTQL_DichVuYTeGiaDinh.ViewModels.AddPhieuNhapThuocViewModel
+
+@{
+    ViewBag.Title = "Thêm Phiếu Nhập Thuốc";
+}
+
+<h2>Thêm Phiếu Nhập Thuốc</h2>
+
+<form asp-action="AddPhieuNhapThuoc" method="post">
+    <div class="form-group">
+        <label for="TenNhaCungCap">Tên Nhà Cung Cấp</label>
+        <input type="text" class="form-control" id="TenNhaCungCap" asp-for="TenNhaCungCap" required />
+    </div>
+
+    <div class="form-group">
+        <label for="NgayLapPhieuNhap">Ngày Lập Phiếu Nhập</label>
+        <input type="date" class="form-control" id="NgayLapPhieuNhap" name="NgayLapPhieuNhap" value="@Model.NgayLapPhieuNhap.ToString("yyyy-MM-dd")" readonly />
+    </div>
+
+
+
+    <h3>Chi Tiết Phiếu Nhập</h3>
+    <div id="chiTietPhieuNhapContainer">
+        @for (int i = 0; i < Model.ChiTietPhieuNhaps.Count; i++)
+        {
+            <div class="detail-row">
+                <div class="form-group">
+                    <label>Chọn Thuốc</label>
+                    <select asp-for="ChiTietPhieuNhaps[i].MaThuoc" class="form-control">
+                        <option value="">Chọn thuốc...</option>
+                        @foreach (var thuoc in Model.DanhSachThuoc)
+                        {
+                            <option value="@thuoc.MaThuoc">@thuoc.TenThuoc</option>
+                        }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Số Lượng Nhập</label>
+                    <input asp-for="ChiTietPhieuNhaps[i].SoLuongNhap" class="form-control" type="number" min="1" />
+                </div>
+                <div class="form-group">
+                    <label>Đơn Giá Nhập</label>
+                    <input asp-for="ChiTietPhieuNhaps[i].DonGiaNhap" class="form-control" type="number" step="0.01" min="0" />
+                </div>
+                <button type="button" class="btn btn-danger remove-detail">Xóa</button>
+            </div>
+        }
+    </div>
+
+    @if (!ViewData.ModelState.IsValid)
+    {
+        <div class="alert alert-danger">
+            @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+            {
+                <p>@error.ErrorMessage</p>
+            }
+        </div>
+    }
+
+    <button type="button" id="addDetail" class="btn btn-success">Thêm Chi Tiết</button>
+    <button type="submit" class="btn btn-primary">Lưu Phiếu Nhập</button>
+    <a asp-action="Index" asp-controller="Thuoc" class="btn btn-secondary">Hủy</a>
+</form>
+
+@section Scripts {
+    <script>
+        document.getElementById('addDetail').onclick = function () {
+            var container = document.getElementById('chiTietPhieuNhapContainer');
+            var index = container.children.length;
+
+            var newDetailRow = `
+                        <div class="detail-row">
+                            <div class="form-group">
+                                <label>Chọn Thuốc</label>
+                                <select name="ChiTietPhieuNhaps[${index}].MaThuoc" class="form-control">
+                                    <option value="">Chọn thuốc...</option>
+        @foreach (var thuoc in Model.DanhSachThuoc)
+        {
+                                            <option value="@thuoc.MaThuoc">@thuoc.TenThuoc</option>
+        }
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Số Lượng Nhập</label>
+                                <input name="ChiTietPhieuNhaps[${index}].SoLuongNhap" class="form-control" type="number" min="1" />
+                            </div>
+                            <div class="form-group">
+                                <label>Đơn Giá Nhập</label>
+                                <input name="ChiTietPhieuNhaps[${index}].DonGiaNhap" class="form-control" type="number" step="0.01" min="0" />
+                            </div>
+                            <button type="button" class="btn btn-danger remove-detail">Xóa</button>
+                        </div>
+                    `;
+
+            container.insertAdjacentHTML('beforeend', newDetailRow);
+
+            attachRemoveDetailEvent();
+        };
+
+        function attachRemoveDetailEvent() {
+            var removeButtons = document.querySelectorAll('.remove-detail');
+            removeButtons.forEach(function (button) {
+                button.onclick = function () {
+                    button.parentElement.remove();
+                };
+            });
+        }
+
+        attachRemoveDetailEvent();
+    </script>
+}

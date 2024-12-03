@@ -1,0 +1,46 @@
+﻿@model HTQL_DichVuYTeGiaDinh.Models.DichVuYTe
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Chi tiết dịch vụ y tế";
+}
+
+<h2>Chi tiết dịch vụ: @Model.TenDichVu</h2>
+
+<div>
+    <p><strong style="font-size:larger">Mô tả:</strong> @Model.MoTa</p>
+    <p><strong style="font-size:larger">Đơn vị tính:</strong> @Model.DonViTinh</p>
+    <div>
+        <a class="buttons btn btn-primary" asp-action="Edit" asp-route-id="@Model?.MaDichVu"><i class="bi bi-pencil-square"></i></a>
+        <a class="buttons btn btn-primary" asp-action="CreateDonGia" asp-route-id="@Model?.MaDichVu">Thêm đơn giá</a>
+    </div>
+</div>
+<br />
+<h3>Danh sách đơn giá</h3>
+
+@if (Model.DonGiaDichVus.Any())
+{
+    <table class="table table-bordered mb-0">
+        <thead>
+            <tr>
+                <th>Thời điểm</th>
+                <th>Đơn giá</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var donGia in Model.DonGiaDichVus.OrderBy(dg => dg.ThoiDiem))
+            {
+                <tr>
+                    <td>@donGia.ThoiDiem.ToString("yyyy/MM/dd hh:mm:ss tt")</td>
+                    <td>@donGia.DonGiaDv.ToString("#,##0 ₫")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>Không có thông tin đơn giá cho dịch vụ này.</p>
+}
+
+<a class="btn btn-primary" href="@Url.Action("Index", "DichVuYTes", new { area = "Admin" })">Quay lại</a>

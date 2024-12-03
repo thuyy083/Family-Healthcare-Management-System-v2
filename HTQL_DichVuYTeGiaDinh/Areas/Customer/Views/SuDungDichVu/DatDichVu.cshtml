@@ -1,0 +1,83 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@model HTQL_DichVuYTeGiaDinh.Models.SuDungDichVu
+
+<h2>Đặt Dịch Vụ Y Tế</h2>
+
+<div asp-validation-summary="All" class="text-danger"></div>
+
+<form asp-action="DatDichVu" method="post">
+    <div class="form-group">
+        <label for="MaDichVu">Chọn Dịch Vụ</label>
+        <select id="MaDichVu" name="MaDichVu" class="form-control" required>
+            <option value="">-- Chọn dịch vụ --</option>
+            @foreach (var dichVu in ViewBag.DanhSachDichVu)
+            {
+                <option value="@dichVu.MaDichVu">@dichVu.TenDichVu</option>
+            }
+        </select>
+        <span asp-validation-for="MaDichVu" class="text-danger"></span>
+
+    </div>
+
+    <div class="form-group">
+        <label asp-for="SoLuong">Số Lượng</label>
+        <input asp-for="SoLuong" class="form-control" required min="1" />
+        <span asp-validation-for="SoLuong" class="text-danger"></span>
+
+    </div>
+
+    <div class="form-group">
+        <label asp-for="SoDienThoaiLienHe">Số Điện Thoại Liên Hệ</label>
+        <input asp-for="SoDienThoaiLienHe" class="form-control" required />
+    </div>
+    <div class="form-group">
+        <label asp-for="NgayBatDau">Thời Gian Sử Dụng</label>
+        <input asp-for="NgayBatDau" class="form-control" type="date" value="@DateTime.Now.ToString("yyyy-MM-dd")" required />
+        <span asp-validation-for="NgayBatDau" class="text-danger"></span>
+
+    </div>
+    <div class="form-group">
+        <label asp-for="DiaChiLienLac">Địa Chỉ Liên Lạc</label>
+        <input asp-for="DiaChiLienLac" class="form-control" required />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="YeuCauChiDinhNhanVien">Yêu Cầu Chỉ Định Nhân Viên</label>
+        <select asp-for="YeuCauChiDinhNhanVien" class="form-control" id="yeuCauChiDinhNhanVien">
+            <option value="0">Không</option>
+            <option value="1">Có</option>
+        </select>
+    </div>
+
+    <div class="form-group" id="nhanVienChiDinhGroup" style="display: none;">
+        <label for="TenNhanVienChiDinh">Chọn Nhân Viên Chăm Sóc</label>
+        <select asp-for="TenNhanVienChiDinh" class="form-control">
+            <option value="">-- Chọn nhân viên --</option>
+            @foreach (var nhanVien in ViewBag.DanhSachNhanVien)
+            {
+                <option value="@nhanVien.HoTen">@nhanVien.HoTen</option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="MoTaBenhLy">Mô Tả Bệnh Lý (nếu có)</label>
+        <textarea asp-for="MoTaBenhLy" class="form-control"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Đặt Dịch Vụ</button>
+</form>
+@section Scripts {
+    <script>
+        // Show or hide the medical staff selection based on the 'Yeu Cau Chi Dinh Nhan Vien' selection
+        document.getElementById('yeuCauChiDinhNhanVien').addEventListener('change', function () {
+            var nhanVienGroup = document.getElementById('nhanVienChiDinhGroup');
+            if (this.value == '1') {
+                nhanVienGroup.style.display = 'block';
+            } else {
+                nhanVienGroup.style.display = 'none';
+            }
+        });
+    </script>
+}

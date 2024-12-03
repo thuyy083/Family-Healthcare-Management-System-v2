@@ -1,0 +1,43 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model HTQL_DichVuYTeGiaDinh.Models.SuDungDichVu
+
+<div class="container mt-5">
+    <div class="alert alert-success text-center" role="alert">
+        <h4 class="alert-heading">Đặt dịch vụ thành công!</h4>
+        <p>Cảm ơn bạn đã sử dụng dịch vụ của chúng tôi. Đơn đặt dịch vụ của bạn đã được ghi nhận và chúng tôi sẽ xử lý trong thời gian sớm nhất.</p>
+    </div>
+
+    <div class="card mt-4">
+        <div class="card-header bg-primary text-white text-center">
+            <h5>Chi Tiết Dịch Vụ Đã Đặt</h5>
+        </div>
+        <div class="card-body">
+            <p><strong>Tên dịch vụ:</strong> @Model.MaDichVuNavigation.TenDichVu</p>
+            <p><strong>Mô tả:</strong> @Model.MaDichVuNavigation.MoTa</p>
+            <p><strong>Đơn vị tính:</strong> @Model.MaDichVuNavigation.DonViTinh</p>
+            <p><strong>Số lượng:</strong> @Model.SoLuong</p>
+            <p><strong>Tổng tiền:</strong> @Model.TongTien.ToString("N0") VNĐ</p>
+            <p><strong>Trạng thái:</strong> @(Model.TrangThai == 0 ? "Chưa duyệt" : "Đã duyệt")</p>
+            <p><strong>Ngày đặt:</strong> @Model.NgayBatDau.ToString("dd/MM/yyyy")</p>
+            <p><strong>Số điện thoại liên hệ:</strong> @Model.SoDienThoaiLienHe</p>
+            <p><strong>Địa chỉ liên lạc:</strong> @Model.DiaChiLienLac</p>
+            @if (Model.YeuCauChiDinhNhanVien == 1 && !string.IsNullOrEmpty(Model.TenNhanVienChiDinh))
+            {
+                <p><strong>Nhân viên được chỉ định:</strong> @Model.TenNhanVienChiDinh</p>
+            }
+            @if (!string.IsNullOrEmpty(Model.MoTaBenhLy))
+            {
+                <p><strong>Mô tả bệnh lý:</strong> @Model.MoTaBenhLy</p>
+            }
+        </div>
+    </div>
+
+    <div class="text-center mt-4">
+        <a href="@Url.Action("Index", "TrangChu", new { area = "Customer" })" class="btn btn-primary">
+            <i class="fas fa-home"></i> Quay về trang chủ
+        </a>
+        <a href="@Url.Action("DatDichVu", "SuDungDichVu", new { area = "Customer" })" class="btn btn-secondary">
+            <i class="fas fa-th-list"></i> Đặt thêm dịch vụ
+        </a>
+    </div>
+</div>

@@ -1,0 +1,116 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@model HTQL_DichVuYTeGiaDinh.ViewModels.AddDonThuocViewModel
+
+<h2>Kê Đơn Thuốc</h2>
+
+<form asp-action="AddDonThuoc" method="post">
+    <input type="hidden" asp-for="MaHoSo" />
+
+    <div class="form-group">
+        <label asp-for="GhiChuDonThuoc">Ghi chú đơn thuốc</label>
+        <textarea asp-for="GhiChuDonThuoc" class="form-control"></textarea>
+    </div>
+
+    <h3>Chi Tiết Đơn Thuốc</h3>
+    <div id="chiTietDonThuocContainer">
+        @for (int i = 0; i < Model.ChiTietDonThuocs.Count; i++)
+        {
+            <div class="detail-row">
+                <div class="form-group">
+                    <label>Chọn Thuốc</label>
+                    <select asp-for="ChiTietDonThuocs[i].MaThuoc" class="form-control">
+                        <option value="">Chọn thuốc...</option>
+                        @foreach (var thuoc in Model.DanhSachThuoc)
+                        {
+                            <option value="@thuoc.MaThuoc">@thuoc.TenThuoc</option>
+                        }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Số Lượng</label>
+                    <input asp-for="ChiTietDonThuocs[i].SoLuong" class="form-control" type="number" min="1" />
+                </div>
+                <div class="form-group">
+                    <label>Hướng Dẫn Sử Dụng</label>
+                    <input asp-for="ChiTietDonThuocs[i].HuongDanSuDung"
+                           class="form-control"
+                           list="huongDanSuDungList" />
+                </div>
+                <button type="button" class="btn btn-danger remove-detail">Xóa</button>
+            </div>
+        }
+    </div>
+
+    <!-- Gợi ý hướng dẫn sử dụng (datalist chỉ cần khai báo một lần) -->
+    <datalist id="huongDanSuDungList">
+        @if (ViewBag.HuongDanSuDungSuggestions != null)
+        {
+            @foreach (var suggestion in ViewBag.HuongDanSuDungSuggestions)
+            {
+                <option value="@suggestion"></option>
+            }
+        }
+    </datalist>
+
+
+    @if (!ViewData.ModelState.IsValid)
+    {
+        <div class="alert alert-danger">
+            @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+            {
+                <p>@error.ErrorMessage</p>
+            }
+        </div>
+    }
+
+    <button type="button" id="addDetail" class="btn btn-success">Thêm Chi Tiết Thuốc</button>
+    <button type="submit" class="btn btn-primary">Lưu Đơn Thuốc</button>
+</form>
+
+<script>
+    document.getElementById('addDetail').onclick = function () {
+        var container = document.getElementById('chiTietDonThuocContainer');
+        var index = container.children.length;
+
+        var newDetailRow = `
+                <div class="detail-row">
+                    <div class="form-group">
+                        <label>Chọn Thuốc</label>
+                        <select name="ChiTietDonThuocs[${index}].MaThuoc" class="form-control">
+                            <option value="">Chọn thuốc...</option>
+    @foreach (var thuoc in Model.DanhSachThuoc)
+    {
+                                <option value="@thuoc.MaThuoc">@thuoc.TenThuoc</option>
+    }
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Số Lượng</label>
+                        <input name="ChiTietDonThuocs[${index}].SoLuong" class="form-control" type="number" min="1" />
+                    </div>
+                    <div class="form-group">
+                        <label>Hướng Dẫn Sử Dụng</label>
+                        <input name="ChiTietDonThuocs[${index}].HuongDanSuDung"
+                               class="form-control"
+                               list="huongDanSuDungList" />
+                    </div>
+                    <button type="button" class="btn btn-danger remove-detail">Xóa</button>
+                </div>
+            `;
+
+        container.insertAdjacentHTML('beforeend', newDetailRow);
+        attachRemoveDetailEvent();
+    };
+
+    function attachRemoveDetailEvent() {
+        var removeButtons = document.querySelectorAll('.remove-detail');
+        removeButtons.forEach(function (button) {
+            button.onclick = function () {
+                button.parentElement.remove();
+            };
+        });
+    }
+
+    attachRemoveDetailEvent();
+</script>
