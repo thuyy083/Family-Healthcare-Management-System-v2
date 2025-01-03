@@ -27,6 +27,8 @@ namespace HTQL_DichVuYTeGiaDinh.ViewModels
         public string SoDienThoai { get; set; } = null!;
 
         [Required(ErrorMessage = "Mật khẩu là bắt buộc.")]
+        [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$",
+                ErrorMessage = "Mật khẩu phải có ít nhất 8 ký tự, bao gồm ít nhất một chữ cái in hoa, một chữ cái thường, một chữ số và một ký tự đặc biệt.")]
         public string MatKhau { get; set; } = null!;
 
         [Required(ErrorMessage = "Địa chỉ email là bắt buộc.")]

@@ -557,7 +557,7 @@ D:\NienLuan\HTQL_DichVuYTeGiaDinh\HTQL_DichVuYTeGiaDinh\bin\Debug\net6.0\itext.s
 D:\NienLuan\HTQL_DichVuYTeGiaDinh\HTQL_DichVuYTeGiaDinh\bin\Debug\net6.0\itext.svg.dll
 D:\NienLuan\HTQL_DichVuYTeGiaDinh\HTQL_DichVuYTeGiaDinh\bin\Debug\net6.0\itext.commons.dll
 D:\NienLuan\HTQL_DichVuYTeGiaDinh\HTQL_DichVuYTeGiaDinh\bin\Debug\net6.0\Microsoft.DotNet.PlatformAbstractions.dll
-D:\NienLuan\HTQL_DichVuYTeGiaDinh\HTQL_DichVuYTeGiaDinh\bin\Debug\net6.0\BouncyCastle.Crypto.dll
 D:\NienLuan\HTQL_DichVuYTeGiaDinh\HTQL_DichVuYTeGiaDinh\bin\Debug\net6.0\itextsharp.dll
 D:\NienLuan\HTQL_DichVuYTeGiaDinh\HTQL_DichVuYTeGiaDinh\bin\Debug\net6.0\MailKit.dll
 D:\NienLuan\HTQL_DichVuYTeGiaDinh\HTQL_DichVuYTeGiaDinh\bin\Debug\net6.0\MimeKit.dll
+D:\NienLuan\HTQL_DichVuYTeGiaDinh\HTQL_DichVuYTeGiaDinh\obj\Debug\net6.0\HTQL_DichVuYTeGiaDinh.sourcelink.json

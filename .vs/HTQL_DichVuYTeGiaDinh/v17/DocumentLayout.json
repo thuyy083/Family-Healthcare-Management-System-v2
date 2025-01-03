@@ -3,48 +3,12 @@
   "WorkspaceRootPath": "D:\\NienLuan\\HTQL_DichVuYTeGiaDinh\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B490F3D8-1F5C-4B8C-8321-9A6FC104AC2B}|HTQL_DichVuYTeGiaDinh\\HTQL_DichVuYTeGiaDinh.csproj|d:\\nienluan\\htql_dichvuytegiadinh\\htql_dichvuytegiadinh\\areas\\admin\\views\\baocao\\baocaodoanhthuchiphi.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{B490F3D8-1F5C-4B8C-8321-9A6FC104AC2B}|HTQL_DichVuYTeGiaDinh\\HTQL_DichVuYTeGiaDinh.csproj|solutionrelative:htql_dichvuytegiadinh\\areas\\admin\\views\\baocao\\baocaodoanhthuchiphi.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{B490F3D8-1F5C-4B8C-8321-9A6FC104AC2B}|HTQL_DichVuYTeGiaDinh\\HTQL_DichVuYTeGiaDinh.csproj|d:\\nienluan\\htql_dichvuytegiadinh\\htql_dichvuytegiadinh\\viewmodels\\createbacsiviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B490F3D8-1F5C-4B8C-8321-9A6FC104AC2B}|HTQL_DichVuYTeGiaDinh\\HTQL_DichVuYTeGiaDinh.csproj|solutionrelative:htql_dichvuytegiadinh\\viewmodels\\createbacsiviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B490F3D8-1F5C-4B8C-8321-9A6FC104AC2B}|HTQL_DichVuYTeGiaDinh\\HTQL_DichVuYTeGiaDinh.csproj|d:\\nienluan\\htql_dichvuytegiadinh\\htql_dichvuytegiadinh\\areas\\admin\\controllers\\baocaocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B490F3D8-1F5C-4B8C-8321-9A6FC104AC2B}|HTQL_DichVuYTeGiaDinh\\HTQL_DichVuYTeGiaDinh.csproj|solutionrelative:htql_dichvuytegiadinh\\areas\\admin\\controllers\\baocaocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B490F3D8-1F5C-4B8C-8321-9A6FC104AC2B}|HTQL_DichVuYTeGiaDinh\\HTQL_DichVuYTeGiaDinh.csproj|d:\\nienluan\\htql_dichvuytegiadinh\\htql_dichvuytegiadinh\\areas\\admin\\views\\baocao\\baocaodoanhthu.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{B490F3D8-1F5C-4B8C-8321-9A6FC104AC2B}|HTQL_DichVuYTeGiaDinh\\HTQL_DichVuYTeGiaDinh.csproj|solutionrelative:htql_dichvuytegiadinh\\areas\\admin\\views\\baocao\\baocaodoanhthu.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B490F3D8-1F5C-4B8C-8321-9A6FC104AC2B}|HTQL_DichVuYTeGiaDinh\\HTQL_DichVuYTeGiaDinh.csproj|d:\\nienluan\\htql_dichvuytegiadinh\\htql_dichvuytegiadinh\\areas\\staff\\views\\shared\\_layoutstaff.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{B490F3D8-1F5C-4B8C-8321-9A6FC104AC2B}|HTQL_DichVuYTeGiaDinh\\HTQL_DichVuYTeGiaDinh.csproj|solutionrelative:htql_dichvuytegiadinh\\areas\\staff\\views\\shared\\_layoutstaff.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B490F3D8-1F5C-4B8C-8321-9A6FC104AC2B}|HTQL_DichVuYTeGiaDinh\\HTQL_DichVuYTeGiaDinh.csproj|d:\\nienluan\\htql_dichvuytegiadinh\\htql_dichvuytegiadinh\\areas\\staff\\controllers\\lichlamvieccontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B490F3D8-1F5C-4B8C-8321-9A6FC104AC2B}|HTQL_DichVuYTeGiaDinh\\HTQL_DichVuYTeGiaDinh.csproj|solutionrelative:htql_dichvuytegiadinh\\areas\\staff\\controllers\\lichlamvieccontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B490F3D8-1F5C-4B8C-8321-9A6FC104AC2B}|HTQL_DichVuYTeGiaDinh\\HTQL_DichVuYTeGiaDinh.csproj|d:\\nienluan\\htql_dichvuytegiadinh\\htql_dichvuytegiadinh\\areas\\staff\\views\\lichlamviec\\thoigianbieu.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{B490F3D8-1F5C-4B8C-8321-9A6FC104AC2B}|HTQL_DichVuYTeGiaDinh\\HTQL_DichVuYTeGiaDinh.csproj|solutionrelative:htql_dichvuytegiadinh\\areas\\staff\\views\\lichlamviec\\thoigianbieu.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B490F3D8-1F5C-4B8C-8321-9A6FC104AC2B}|HTQL_DichVuYTeGiaDinh\\HTQL_DichVuYTeGiaDinh.csproj|d:\\nienluan\\htql_dichvuytegiadinh\\htql_dichvuytegiadinh\\areas\\staff\\controllers\\addphieunhapthuoccontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B490F3D8-1F5C-4B8C-8321-9A6FC104AC2B}|HTQL_DichVuYTeGiaDinh\\HTQL_DichVuYTeGiaDinh.csproj|solutionrelative:htql_dichvuytegiadinh\\areas\\staff\\controllers\\addphieunhapthuoccontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B490F3D8-1F5C-4B8C-8321-9A6FC104AC2B}|HTQL_DichVuYTeGiaDinh\\HTQL_DichVuYTeGiaDinh.csproj|d:\\nienluan\\htql_dichvuytegiadinh\\htql_dichvuytegiadinh\\viewmodels\\thoigianbieuviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B490F3D8-1F5C-4B8C-8321-9A6FC104AC2B}|HTQL_DichVuYTeGiaDinh\\HTQL_DichVuYTeGiaDinh.csproj|solutionrelative:htql_dichvuytegiadinh\\viewmodels\\thoigianbieuviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B490F3D8-1F5C-4B8C-8321-9A6FC104AC2B}|HTQL_DichVuYTeGiaDinh\\HTQL_DichVuYTeGiaDinh.csproj|d:\\nienluan\\htql_dichvuytegiadinh\\htql_dichvuytegiadinh\\models\\sudungdichvu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B490F3D8-1F5C-4B8C-8321-9A6FC104AC2B}|HTQL_DichVuYTeGiaDinh\\HTQL_DichVuYTeGiaDinh.csproj|solutionrelative:htql_dichvuytegiadinh\\models\\sudungdichvu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B490F3D8-1F5C-4B8C-8321-9A6FC104AC2B}|HTQL_DichVuYTeGiaDinh\\HTQL_DichVuYTeGiaDinh.csproj|d:\\nienluan\\htql_dichvuytegiadinh\\htql_dichvuytegiadinh\\models\\nhanvienyte.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B490F3D8-1F5C-4B8C-8321-9A6FC104AC2B}|HTQL_DichVuYTeGiaDinh\\HTQL_DichVuYTeGiaDinh.csproj|solutionrelative:htql_dichvuytegiadinh\\models\\nhanvienyte.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B490F3D8-1F5C-4B8C-8321-9A6FC104AC2B}|HTQL_DichVuYTeGiaDinh\\HTQL_DichVuYTeGiaDinh.csproj|d:\\nienluan\\htql_dichvuytegiadinh\\htql_dichvuytegiadinh\\models\\hoadon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B490F3D8-1F5C-4B8C-8321-9A6FC104AC2B}|HTQL_DichVuYTeGiaDinh\\HTQL_DichVuYTeGiaDinh.csproj|solutionrelative:htql_dichvuytegiadinh\\models\\hoadon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B490F3D8-1F5C-4B8C-8321-9A6FC104AC2B}|HTQL_DichVuYTeGiaDinh\\HTQL_DichVuYTeGiaDinh.csproj|d:\\nienluan\\htql_dichvuytegiadinh\\htql_dichvuytegiadinh\\areas\\doctor\\controllers\\hosoytecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B490F3D8-1F5C-4B8C-8321-9A6FC104AC2B}|HTQL_DichVuYTeGiaDinh\\HTQL_DichVuYTeGiaDinh.csproj|solutionrelative:htql_dichvuytegiadinh\\areas\\doctor\\controllers\\hosoytecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -59,145 +23,27 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "BaoCaoDoanhThuChiPhi.cshtml",
-              "DocumentMoniker": "D:\\NienLuan\\HTQL_DichVuYTeGiaDinh\\HTQL_DichVuYTeGiaDinh\\Areas\\Admin\\Views\\BaoCao\\BaoCaoDoanhThuChiPhi.cshtml",
-              "RelativeDocumentMoniker": "HTQL_DichVuYTeGiaDinh\\Areas\\Admin\\Views\\BaoCao\\BaoCaoDoanhThuChiPhi.cshtml",
-              "ToolTip": "D:\\NienLuan\\HTQL_DichVuYTeGiaDinh\\HTQL_DichVuYTeGiaDinh\\Areas\\Admin\\Views\\BaoCao\\BaoCaoDoanhThuChiPhi.cshtml",
-              "RelativeToolTip": "HTQL_DichVuYTeGiaDinh\\Areas\\Admin\\Views\\BaoCao\\BaoCaoDoanhThuChiPhi.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAgAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-12-03T18:22:17.522Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "BaoCaoDoanhThu.cshtml",
-              "DocumentMoniker": "D:\\NienLuan\\HTQL_DichVuYTeGiaDinh\\HTQL_DichVuYTeGiaDinh\\Areas\\Admin\\Views\\BaoCao\\BaoCaoDoanhThu.cshtml",
-              "RelativeDocumentMoniker": "HTQL_DichVuYTeGiaDinh\\Areas\\Admin\\Views\\BaoCao\\BaoCaoDoanhThu.cshtml",
-              "ToolTip": "D:\\NienLuan\\HTQL_DichVuYTeGiaDinh\\HTQL_DichVuYTeGiaDinh\\Areas\\Admin\\Views\\BaoCao\\BaoCaoDoanhThu.cshtml",
-              "RelativeToolTip": "HTQL_DichVuYTeGiaDinh\\Areas\\Admin\\Views\\BaoCao\\BaoCaoDoanhThu.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAA/AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-12-03T18:19:45.781Z",
+              "Title": "CreateBacSiViewModel.cs",
+              "DocumentMoniker": "D:\\NienLuan\\HTQL_DichVuYTeGiaDinh\\HTQL_DichVuYTeGiaDinh\\ViewModels\\CreateBacSiViewModel.cs",
+              "RelativeDocumentMoniker": "HTQL_DichVuYTeGiaDinh\\ViewModels\\CreateBacSiViewModel.cs",
+              "ToolTip": "D:\\NienLuan\\HTQL_DichVuYTeGiaDinh\\HTQL_DichVuYTeGiaDinh\\ViewModels\\CreateBacSiViewModel.cs",
+              "RelativeToolTip": "HTQL_DichVuYTeGiaDinh\\ViewModels\\CreateBacSiViewModel.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAyAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-06T14:46:17.963Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "BaoCaoController.cs",
-              "DocumentMoniker": "D:\\NienLuan\\HTQL_DichVuYTeGiaDinh\\HTQL_DichVuYTeGiaDinh\\Areas\\Admin\\Controllers\\BaoCaoController.cs",
-              "RelativeDocumentMoniker": "HTQL_DichVuYTeGiaDinh\\Areas\\Admin\\Controllers\\BaoCaoController.cs",
-              "ToolTip": "D:\\NienLuan\\HTQL_DichVuYTeGiaDinh\\HTQL_DichVuYTeGiaDinh\\Areas\\Admin\\Controllers\\BaoCaoController.cs",
-              "RelativeToolTip": "HTQL_DichVuYTeGiaDinh\\Areas\\Admin\\Controllers\\BaoCaoController.cs",
-              "ViewState": "AQIAADgAAAAAAAAAAAAgwEQAAAANAAAA",
+              "Title": "HoSoYTeController.cs",
+              "DocumentMoniker": "D:\\NienLuan\\HTQL_DichVuYTeGiaDinh\\HTQL_DichVuYTeGiaDinh\\Areas\\Doctor\\Controllers\\HoSoYTeController.cs",
+              "RelativeDocumentMoniker": "HTQL_DichVuYTeGiaDinh\\Areas\\Doctor\\Controllers\\HoSoYTeController.cs",
+              "ToolTip": "D:\\NienLuan\\HTQL_DichVuYTeGiaDinh\\HTQL_DichVuYTeGiaDinh\\Areas\\Doctor\\Controllers\\HoSoYTeController.cs",
+              "RelativeToolTip": "HTQL_DichVuYTeGiaDinh\\Areas\\Doctor\\Controllers\\HoSoYTeController.cs",
+              "ViewState": "AQIAAF8BAAAAAAAAAAAAAGIBAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-03T18:19:42.773Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "_LayoutStaff.cshtml",
-              "DocumentMoniker": "D:\\NienLuan\\HTQL_DichVuYTeGiaDinh\\HTQL_DichVuYTeGiaDinh\\Areas\\Staff\\Views\\Shared\\_LayoutStaff.cshtml",
-              "RelativeDocumentMoniker": "HTQL_DichVuYTeGiaDinh\\Areas\\Staff\\Views\\Shared\\_LayoutStaff.cshtml",
-              "ToolTip": "D:\\NienLuan\\HTQL_DichVuYTeGiaDinh\\HTQL_DichVuYTeGiaDinh\\Areas\\Staff\\Views\\Shared\\_LayoutStaff.cshtml",
-              "RelativeToolTip": "HTQL_DichVuYTeGiaDinh\\Areas\\Staff\\Views\\Shared\\_LayoutStaff.cshtml",
-              "ViewState": "AQIAAGwAAAAAAAAAAAAAAGAAAAAxAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-12-03T18:07:57.245Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "ThoiGianBieu.cshtml",
-              "DocumentMoniker": "D:\\NienLuan\\HTQL_DichVuYTeGiaDinh\\HTQL_DichVuYTeGiaDinh\\Areas\\Staff\\Views\\LichLamViec\\ThoiGianBieu.cshtml",
-              "RelativeDocumentMoniker": "HTQL_DichVuYTeGiaDinh\\Areas\\Staff\\Views\\LichLamViec\\ThoiGianBieu.cshtml",
-              "ToolTip": "D:\\NienLuan\\HTQL_DichVuYTeGiaDinh\\HTQL_DichVuYTeGiaDinh\\Areas\\Staff\\Views\\LichLamViec\\ThoiGianBieu.cshtml",
-              "RelativeToolTip": "HTQL_DichVuYTeGiaDinh\\Areas\\Staff\\Views\\LichLamViec\\ThoiGianBieu.cshtml",
-              "ViewState": "AQIAACcAAAAAAAAAAAAAAAkAAAAVAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-12-03T18:07:31.535Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "AddPhieuNhapThuocController.cs",
-              "DocumentMoniker": "D:\\NienLuan\\HTQL_DichVuYTeGiaDinh\\HTQL_DichVuYTeGiaDinh\\Areas\\Staff\\Controllers\\AddPhieuNhapThuocController.cs",
-              "RelativeDocumentMoniker": "HTQL_DichVuYTeGiaDinh\\Areas\\Staff\\Controllers\\AddPhieuNhapThuocController.cs",
-              "ToolTip": "D:\\NienLuan\\HTQL_DichVuYTeGiaDinh\\HTQL_DichVuYTeGiaDinh\\Areas\\Staff\\Controllers\\AddPhieuNhapThuocController.cs",
-              "RelativeToolTip": "HTQL_DichVuYTeGiaDinh\\Areas\\Staff\\Controllers\\AddPhieuNhapThuocController.cs",
-              "ViewState": "AQIAACAAAAAAAAAAAAAgwBcAAAANAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-03T18:06:53.28Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "LichLamViecController.cs",
-              "DocumentMoniker": "D:\\NienLuan\\HTQL_DichVuYTeGiaDinh\\HTQL_DichVuYTeGiaDinh\\Areas\\Staff\\Controllers\\LichLamViecController.cs",
-              "RelativeDocumentMoniker": "HTQL_DichVuYTeGiaDinh\\Areas\\Staff\\Controllers\\LichLamViecController.cs",
-              "ToolTip": "D:\\NienLuan\\HTQL_DichVuYTeGiaDinh\\HTQL_DichVuYTeGiaDinh\\Areas\\Staff\\Controllers\\LichLamViecController.cs",
-              "RelativeToolTip": "HTQL_DichVuYTeGiaDinh\\Areas\\Staff\\Controllers\\LichLamViecController.cs",
-              "ViewState": "AQIAACMAAAAAAAAAAAAQwDEAAABJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-03T18:06:51.006Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "ThoiGianBieuViewModel.cs",
-              "DocumentMoniker": "D:\\NienLuan\\HTQL_DichVuYTeGiaDinh\\HTQL_DichVuYTeGiaDinh\\ViewModels\\ThoiGianBieuViewModel.cs",
-              "RelativeDocumentMoniker": "HTQL_DichVuYTeGiaDinh\\ViewModels\\ThoiGianBieuViewModel.cs",
-              "ToolTip": "D:\\NienLuan\\HTQL_DichVuYTeGiaDinh\\HTQL_DichVuYTeGiaDinh\\ViewModels\\ThoiGianBieuViewModel.cs",
-              "RelativeToolTip": "HTQL_DichVuYTeGiaDinh\\ViewModels\\ThoiGianBieuViewModel.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-03T18:05:53.717Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "NhanVienYTe.cs",
-              "DocumentMoniker": "D:\\NienLuan\\HTQL_DichVuYTeGiaDinh\\HTQL_DichVuYTeGiaDinh\\Models\\NhanVienYTe.cs",
-              "RelativeDocumentMoniker": "HTQL_DichVuYTeGiaDinh\\Models\\NhanVienYTe.cs",
-              "ToolTip": "D:\\NienLuan\\HTQL_DichVuYTeGiaDinh\\HTQL_DichVuYTeGiaDinh\\Models\\NhanVienYTe.cs",
-              "RelativeToolTip": "HTQL_DichVuYTeGiaDinh\\Models\\NhanVienYTe.cs",
-              "ViewState": "AQIAABEAAAAAAAAAAAAAABwAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-03T17:52:28.378Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "HoaDon.cs",
-              "DocumentMoniker": "D:\\NienLuan\\HTQL_DichVuYTeGiaDinh\\HTQL_DichVuYTeGiaDinh\\Models\\HoaDon.cs",
-              "RelativeDocumentMoniker": "HTQL_DichVuYTeGiaDinh\\Models\\HoaDon.cs",
-              "ToolTip": "D:\\NienLuan\\HTQL_DichVuYTeGiaDinh\\HTQL_DichVuYTeGiaDinh\\Models\\HoaDon.cs",
-              "RelativeToolTip": "HTQL_DichVuYTeGiaDinh\\Models\\HoaDon.cs",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAAABoAAAABAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-03T17:51:54.212Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "SuDungDichVu.cs",
-              "DocumentMoniker": "D:\\NienLuan\\HTQL_DichVuYTeGiaDinh\\HTQL_DichVuYTeGiaDinh\\Models\\SuDungDichVu.cs",
-              "RelativeDocumentMoniker": "HTQL_DichVuYTeGiaDinh\\Models\\SuDungDichVu.cs",
-              "ToolTip": "D:\\NienLuan\\HTQL_DichVuYTeGiaDinh\\HTQL_DichVuYTeGiaDinh\\Models\\SuDungDichVu.cs",
-              "RelativeToolTip": "HTQL_DichVuYTeGiaDinh\\Models\\SuDungDichVu.cs",
-              "ViewState": "AQIAAA8AAAAAAAAAAAAYwCEAAAApAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-03T17:51:32.513Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-06T14:38:15.214Z"
             }
           ]
         }
