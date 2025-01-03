@@ -1,0 +1,12 @@
+# Visual Studio temporary files
+.vs/
+bin/
+obj/
+
+# Build output
+*.dll
+*.exe
+*.pdb
+*.cache
+*.json
+*.nuget
